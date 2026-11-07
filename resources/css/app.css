@@ -1,0 +1,11 @@
+@import 'tailwindcss';
+
+@theme {
+  /* Kustomisasi warna hijau UNISLA (opsional, bisa disesuaikan) */
+  --color-unisla-50: #f0fdf4;
+  --color-unisla-100: #dcfce7;
+  --color-unisla-500: #22c55e;
+  --color-unisla-700: #15803d;
+  --color-unisla-800: #166534;
+  --color-unisla-900: #14532d;
+}

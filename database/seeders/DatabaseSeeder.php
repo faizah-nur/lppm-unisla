@@ -3,8 +3,10 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+
+// use Illuminate\Database\Console\Seeds\WithoutModelEvents; // Boleh di-comment atau dibiarkan
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,11 +15,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        User::create([
+            'name' => 'Admin LPPM',
+            'email' => 'adminlppm@unisla.ac.id',
+            'password' => Hash::make('adminLPPMUnisla'), // Jangan lupa di-hash!
+        ]);
+        // Panggil seeder beranda kita di sini
+        $this->call([
+            LandingPageSeeder::class,
         ]);
     }
 }
