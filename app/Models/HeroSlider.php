@@ -22,5 +22,22 @@ class HeroSlider extends Model
 
     protected $casts = [
         'is_active' => 'boolean',
+        'order' => 'integer',
     ];
+
+    /**
+     * Scope: hanya slider yang aktif.
+     */
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', true);
+    }
+
+    /**
+     * Scope: urutkan berdasarkan order.
+     */
+    public function scopeOrdered($query)
+    {
+        return $query->orderBy('order', 'asc')->orderBy('id', 'asc');
+    }
 }

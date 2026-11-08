@@ -28,28 +28,54 @@ class HeroSliderResource extends Resource
                     ->schema([
                         Forms\Components\TextInput::make('tagline')
                             ->label('Tagline (Opsional)')
-                            ->maxLength(255),
+                            ->maxLength(255)
+                            ->placeholder('Contoh: Selamat Datang'),
+
                         Forms\Components\TextInput::make('title')
                             ->label('Judul Utama')
                             ->required()
-                            ->maxLength(255),
+                            ->maxLength(255)
+                            ->validationMessages([
+                                'required' => 'Judul utama wajib diisi.',
+                            ]),
+
                         Forms\Components\Textarea::make('description')
                             ->label('Deskripsi')
                             ->required()
-                            ->columnSpanFull(),
+                            ->minLength(10)
+                            ->maxLength(500)
+                            ->rows(3)
+                            ->columnSpanFull()
+                            ->validationMessages([
+                                'required' => 'Deskripsi wajib diisi.',
+                                'min' => 'Deskripsi minimal 10 karakter.',
+                            ]),
+
                         Forms\Components\FileUpload::make('image')
                             ->label('Gambar Background')
                             ->image()
                             ->disk('public')
                             ->directory('hero-sliders')
-                            ->maxSize(5120)
+                            ->maxSize(5120) // 5MB
+                            ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                            ->helperText('Disarankan landscape (16:9), minimal 1200px lebar. Maks 5MB.')
                             ->columnSpanFull(),
+
                         Forms\Components\TextInput::make('btn_text')
                             ->label('Teks Tombol (Opsional)')
-                            ->maxLength(255),
+                            ->maxLength(255)
+                            ->placeholder('Contoh: Selengkapnya'),
+
                         Forms\Components\TextInput::make('btn_link')
                             ->label('Link Tombol (Opsional)')
-                            ->maxLength(255),
+                            ->maxLength(255)
+                            ->nullable() // Izinkan kosong
+                            ->placeholder('Contoh: /profil, #visi-misi, atau https://example.com')
+                            ->rule('regex:/^(\/|#|https?:\/\/).*/') // Hanya validasi jika DIISI
+                            ->helperText('Boleh dikosongkan. Bisa berupa path (/profil), anchor (#visi), atau URL lengkap.')
+                            ->validationMessages([
+                                'regex' => 'Format link tidak valid. Gunakan /, #, atau http(s)://.',
+                            ]),
                     ])->columns(2),
 
                 Forms\Components\Section::make('Pengaturan')
@@ -57,10 +83,21 @@ class HeroSliderResource extends Resource
                         Forms\Components\TextInput::make('order')
                             ->label('Urutan Tampil')
                             ->numeric()
-                            ->default(0),
+                            ->integer()
+                            ->minValue(0)
+                            ->default(0)
+                            ->required()
+                            ->helperText('Angka lebih kecil tampil lebih dulu.')
+                            ->validationMessages([
+                                'required' => 'Urutan tampil wajib diisi.',
+                                'min' => 'Urutan tidak boleh negatif.',
+                                'integer' => 'Urutan harus berupa angka bulat.',
+                            ]),
+
                         Forms\Components\Toggle::make('is_active')
                             ->label('Tampilkan di Beranda')
-                            ->default(true),
+                            ->default(true)
+                            ->helperText('Jika dimatikan, slider tidak akan muncul di beranda.'),
                     ])->columns(2),
             ]);
     }
@@ -70,11 +107,14 @@ class HeroSliderResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\ImageColumn::make('image')
-                    ->label('Gambar'),
+                    ->label('Gambar')
+                    ->height(50)
+                    ->width(80),
                 Tables\Columns\TextColumn::make('title')
                     ->label('Judul')
                     ->searchable()
-                    ->limit(50),
+                    ->limit(50)
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('order')
                     ->label('Urutan')
                     ->sortable(),

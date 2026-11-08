@@ -18,6 +18,7 @@
     <!-- 2. Konten Utama -->
     <main class="flex-grow">
         @yield('content')
+        {{ $slot ?? '' }}
     </main>
 
     <!-- 3. Include Footer -->

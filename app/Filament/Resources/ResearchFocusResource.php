@@ -6,6 +6,7 @@ use App\Filament\Resources\ResearchFocusResource\Pages;
 use App\Models\ResearchFocus;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -27,27 +28,52 @@ class ResearchFocusResource extends Resource
                 Forms\Components\TextInput::make('title')
                     ->label('Judul Fokus')
                     ->required()
-                    ->maxLength(255),
+                    ->maxLength(255)
+                    ->unique(ignoreRecord: true) // cegah duplikat judul
+                    ->validationMessages([
+                        'unique' => 'Judul fokus ini sudah ada. Gunakan judul lain.',
+                    ]),
+
                 Forms\Components\Textarea::make('description')
                     ->label('Deskripsi')
                     ->required()
+                    ->minLength(10)
+                    ->maxLength(1000)
                     ->columnSpanFull(),
+
                 Forms\Components\Toggle::make('is_featured')
                     ->label('Jadikan Card Besar (Utama)')
-                    ->helperText('Hanya boleh ada satu yang aktif. Card utama akan mengambil gambar besar.'),
+                    ->helperText('Hanya boleh ada satu yang aktif. Card utama akan mengambil gambar besar.')
+                    ->live() // agar validasi image reaktif terhadap toggle
+                    ->afterStateUpdated(function (bool $state, Get $get, ?ResearchFocus $record, Forms\Set $set) {
+                        // Jika diaktifkan, matikan featured lain (logic di server via mutate)
+                    }),
+
                 Forms\Components\TextInput::make('order')
                     ->label('Urutan Tampil')
                     ->numeric()
-                    ->default(0),
+                    ->integer()
+                    ->minValue(0)
+                    ->default(0)
+                    ->required()
+                    ->validationMessages([
+                        'required' => 'Urutan tampil wajib diisi.',
+                        'min' => 'Urutan tidak boleh negatif.',
+                    ]),
+
                 Forms\Components\FileUpload::make('image')
                     ->label('Gambar Fokus Penelitian')
                     ->image()
                     ->disk('public')
                     ->directory('research-focuses')
-                    ->maxSize(5120) // Maks 5MB
+                    ->maxSize(5120)
                     ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                    ->required(fn (Get $get) => (bool) $get('is_featured'))
                     ->helperText('Wajib diisi untuk Card Utama (Featured). Untuk card kecil, gambar ini disembunyikan.')
-                    ->columnSpanFull(),
+                    ->columnSpanFull()
+                    ->validationMessages([
+                        'required' => 'Gambar wajib diunggah karena fokus ini ditandai sebagai Card Utama.',
+                    ]),
             ]);
     }
 
@@ -57,7 +83,8 @@ class ResearchFocusResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('title')
                     ->label('Judul')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\IconColumn::make('is_featured')
                     ->label('Card Utama')
                     ->boolean(),

@@ -5,8 +5,7 @@
             <!-- Kolom 1: Info -->
             <div>
                 <div class="flex items-center gap-3 mb-4">
-                    <img class="h-10 w-auto grayscale opacity-80"
-                        src="https://unisla.ac.id/wp-content/uploads/2023/05/logo-unisla.png" alt="Logo UNISLA">
+                    <img class="h-10 w-auto grayscale opacity-80" src="img/logounisla.png" alt="Logo UNISLA">
                     <span class="font-bold text-xl text-white">LPPM UNISLA</span>
                 </div>
                 <p class="text-sm leading-relaxed text-gray-400">
