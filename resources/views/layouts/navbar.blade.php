@@ -81,7 +81,7 @@
                     <span
                         class="absolute left-3 right-3 -bottom-0.5 h-0.5 bg-amber-400 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
                 </a>
-                <a href="#"
+                <a href="{{ route('informasi') }}"
                     class="relative px-3 py-2 text-white/90 hover:text-amber-400 font-medium transition-colors duration-200 group">
                     Informasi
                     <span
