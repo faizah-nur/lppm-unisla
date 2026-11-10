@@ -169,7 +169,7 @@
 
     <!-- Navigation Dots -->
     @if (count($sliders) > 1)
-        <div class="absolute bottom-8 lg:bottom-10 left-0 right-0 flex justify-center gap-2 z-10">
+        <div class="absolute bottom-8 lg:bottom-20 left-0 right-0 flex justify-center gap-2 z-10">
             <template x-for="i in slides" :key="i">
                 <button @click="activeSlide = i - 1" aria-label="Ke slide"
                     class="h-2.5 rounded-full transition-all duration-300"
