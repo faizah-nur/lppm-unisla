@@ -15,6 +15,6 @@ Route::get('/profil', ProfilPage::class)->name('profil');
 
 Route::get('/peneliti', ResearcherList::class)->name('peneliti.index');
 
-Route::get('/informasi', InformasiPage::class)->name('informasi');
+Route::redirect('/informasi', '/#informasi')->name('informasi');
 Route::get('/informasi/{id}', InformasiDetail::class)->name('informasi.detail');
 Route::get('/layanan', LayananPage::class)->name('layanan');

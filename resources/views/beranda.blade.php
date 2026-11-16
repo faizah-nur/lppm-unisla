@@ -67,7 +67,109 @@
         </div>
     </div>
 
-    <!-- 3. FOKUS PENELITIAN (Dinamis) -->
+    <!-- 3. INFORMASI KEGIATAN -->
+    <section id="informasi" class="max-w-7xl mx-auto pt-24 pb-12 px-4 sm:px-6 lg:px-8 scroll-mt-20">
+        <div class="text-center mb-12">
+            <span class="inline-block text-xs font-bold tracking-[0.2em] uppercase text-emerald-600 mb-3">Kabar &
+                Agenda</span>
+            <h2 class="text-3xl md:text-4xl font-bold text-emerald-950 mb-4">Informasi Kegiatan</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">Kumpulan informasi kegiatan, acara, dan dokumentasi litbangpemas.</p>
+        </div>
+
+        @php
+            $informations = \App\Models\Information::orderBy('published_at', 'desc')->get();
+        @endphp
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            @forelse($informations as $info)
+                <div
+                    class="bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-lg hover:border-emerald-200 transition-all duration-300 flex flex-col group">
+
+                    <!-- Bagian Atas: Gambar / YouTube -->
+                    <a href="{{ route('informasi.detail', $info->id) }}" wire:navigate
+                        class="block aspect-[16/10] bg-gray-100 overflow-hidden relative cursor-pointer">
+                        @if ($info->youtube_url)
+                            <!-- Tampilkan Thumbnail YouTube -->
+                            @php
+                                preg_match(
+                                    '%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i',
+                                    $info->youtube_url,
+                                    $match,
+                                );
+                                $youtubeId = $match[1] ?? null;
+                            @endphp
+
+                            @if ($youtubeId)
+                                <img src="https://img.youtube.com/vi/{{ $youtubeId }}/hqdefault.jpg"
+                                    alt="{{ $info->title }}"
+                                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                                <!-- Ikon Play -->
+                                <div
+                                    class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-colors">
+                                    <div
+                                        class="w-14 h-14 bg-white/90 rounded-full flex items-center justify-center shadow-lg">
+                                        <svg class="w-6 h-6 text-emerald-600 ml-1" fill="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path d="M8 5v14l11-7z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            @endif
+                        @elseif($info->image)
+                            <!-- Tampilkan Gambar Upload -->
+                            <img src="{{ Storage::url($info->image) }}" alt="{{ $info->title }}"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        @else
+                            <!-- Placeholder -->
+                            <div class="w-full h-full flex items-center justify-center bg-gray-100 text-gray-400">No
+                                Image</div>
+                        @endif
+                    </a>
+
+                    <!-- Bagian Bawah: Teks -->
+                    <div class="p-6 flex-1 flex flex-col">
+                        <!-- Tanggal -->
+                        <div class="flex items-center gap-2 text-sm text-gray-500 mb-3">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                                </path>
+                            </svg>
+                            {{ \Carbon\Carbon::parse($info->published_at)->format('Y-m-d') }}
+                        </div>
+
+                        <!-- Judul -->
+                        <h3
+                            class="text-xl font-bold text-gray-900 mb-3 leading-snug group-hover:text-emerald-700 transition-colors">
+                            {{ $info->title }}
+                        </h3>
+
+                        <!-- Cuplikan Konten -->
+                        <p class="text-gray-600 text-sm mb-6 line-clamp-3">
+                            {{ Str::limit(strip_tags($info->content), 120) }}
+                        </p>
+
+                        <!-- Tombol Baca -->
+                        <a href="{{ route('informasi.detail', $info->id) }}" wire:navigate
+                            class="mt-auto inline-flex items-center gap-1.5 text-emerald-700 font-semibold text-sm hover:text-emerald-800 transition-colors">
+                            Baca Selengkapnya
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            @empty
+                <div
+                    class="col-span-full text-center py-20 text-gray-500 bg-white rounded-2xl border border-dashed border-gray-300">
+                    Belum ada informasi kegiatan yang dipublikasikan.
+                </div>
+            @endforelse
+        </div>
+    </section>
+
+    <!-- 4. FOKUS PENELITIAN (Dinamis) -->
     <div class="max-w-7xl mx-auto py-20 px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
             <span class="inline-block text-xs font-bold tracking-[0.2em] uppercase text-emerald-600 mb-3">Riset &
