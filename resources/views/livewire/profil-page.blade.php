@@ -34,8 +34,7 @@
                     <h1
                         class="reveal text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-5 leading-tight">
                         Profil <span
-                            class="bg-gradient-to-r from-yellow-300 to-emerald-300 bg-clip-text text-transparent">LPPM
-                            UNISLA</span>
+                            class="bg-gradient-to-r from-yellow-300 to-emerald-300 bg-clip-text text-transparent">litbangpemas</span>
                     </h1>
 
                     <p
@@ -77,8 +76,7 @@
                         <!-- Kartu gambar dengan parallax halus -->
                         <div class="relative rounded-[2rem] overflow-hidden ring-1 ring-white/20 shadow-2xl shadow-emerald-950/60 bg-emerald-900"
                             :style="`transform: translateY(${Math.min(scrollY * 0.06, 30)}px)`">
-                            <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=1200&auto=format&fit=crop"
-                                alt="Kampus UNISLA"
+                            <img src="img/rektor.jpeg" alt="Kampus UNISLA"
                                 class="w-full h-64 sm:h-80 lg:h-[420px] object-cover transition-transform duration-[1200ms] ease-out hover:scale-105">
                             <!-- Overlay gradien tipis bawah -->
                             <div
@@ -188,7 +186,7 @@
                 <span class="inline-block text-xs font-bold tracking-[0.2em] uppercase text-emerald-600 mb-2">Tim
                     Kami</span>
                 <h2 class="text-2xl md:text-3xl font-bold text-emerald-950 mb-2">Struktur Organisasi</h2>
-                <p class="text-gray-500">Pengurus LPPM UNISLA periode 2024-2028</p>
+                <p class="text-gray-500">Pengurus litbangpemas periode 2024-2028</p>
             </div>
 
             @if ($members->count())

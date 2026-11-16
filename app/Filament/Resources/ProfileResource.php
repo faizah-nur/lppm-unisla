@@ -41,7 +41,7 @@ class ProfileResource extends Resource
                 Forms\Components\Section::make('Sejarah')
                     ->schema([
                         Forms\Components\RichEditor::make('history')
-                            ->label('Sejarah LPPM')
+                            ->label('Sejarah litbangpemas')
                             ->required()
                             ->columnSpanFull(),
                     ]),

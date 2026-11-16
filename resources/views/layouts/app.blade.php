@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'LPPM UNISLA')</title>
+    <title>@yield('title', 'litbangpemas')</title>
 
     <!-- Panggil Vite (Tailwind & JS) -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])

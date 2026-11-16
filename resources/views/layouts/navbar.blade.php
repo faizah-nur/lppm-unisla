@@ -8,11 +8,8 @@
             <!-- Logo Section -->
             <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
                 <img class="h-12 w-auto transition-transform duration-300 group-hover:scale-105"
-                    src="{{ asset('img/logounisla.png') }}" alt="Logo UNISLA">
-                <div class="flex flex-col">
-                    <span class="font-bold text-xl text-emerald-400 leading-tight">LPPM</span>
-                    <span class="font-semibold text-xs text-amber-400/90 tracking-[0.2em]">UNISLA</span>
-                </div>
+                    src="{{ asset('img/logounisla.png') }}" alt="Logo litbangpemas">
+                <span class="font-extrabold text-xl text-emerald-400 leading-tight tracking-tight">litbangpemas</span>
             </a>
 
             <!-- Desktop Menu -->
@@ -43,7 +40,7 @@
                         class="absolute left-0 mt-2 w-48 bg-white/95 backdrop-blur-md rounded-xl shadow-xl shadow-emerald-900/20 py-2 opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 z-50 border border-white/40">
                         <a href="{{ route('profil') }}"
                             class="block px-4 py-2 text-sm font-semibold text-emerald-800 hover:bg-emerald-50/60 rounded-lg mx-2 transition-colors border-b border-gray-100 mb-1">Tentang
-                            LPPM</a>
+                            litbangpemas</a>
                         <a href="{{ route('profil') }}#visi-misi"
                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-emerald-50/60 hover:text-emerald-700 rounded-lg mx-2 transition-colors">Visi
                             & Misi</a>

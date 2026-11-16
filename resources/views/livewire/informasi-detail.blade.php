@@ -88,7 +88,7 @@
 
                 <!-- Footer Artikel / Garis Pemisah -->
                 <div class="mt-16 pt-8 border-t border-gray-100 flex items-center justify-between">
-                    <p class="text-sm text-gray-400 italic">Dipublikasikan oleh LPPM UNISLA</p>
+                    <p class="text-sm text-gray-400 italic">Dipublikasikan oleh litbangpemas</p>
                 </div>
             </div>
         </article>

@@ -5,11 +5,11 @@
             <!-- Kolom 1: Info -->
             <div>
                 <div class="flex items-center gap-3 mb-4">
-                    <img class="h-10 w-auto grayscale opacity-80" src="img/logounisla.png" alt="Logo UNISLA">
-                    <span class="font-bold text-xl text-white">LPPM UNISLA</span>
+                    <img class="h-10 w-auto grayscale opacity-80" src="{{ asset('img/logounisla.png') }}" alt="Logo litbangpemas">
+                    <span class="font-bold text-xl text-white tracking-tight">litbangpemas</span>
                 </div>
                 <p class="text-sm leading-relaxed text-gray-400">
-                    Lembaga Penelitian dan Pengabdian kepada Masyarakat Universitas Islam Lamongan. Berdedikasi untuk
+                    Lembaga Penelitian, Pengembangan, dan Pengabdian kepada Masyarakat Universitas Islam Lamongan. Berdedikasi untuk
                     kemajuan riset dan pengabdian yang berdampak bagi masyarakat.
                 </p>
             </div>
@@ -32,14 +32,14 @@
                 <address class="not-italic text-sm space-y-2 text-gray-400">
                     <p>Gedung Rektorat UNISLA Lt. 2</p>
                     <p>Jl. Veteran No. 53A, Lamongan</p>
-                    <p>Email: lppm@unisla.ac.id</p>
+                    <p>Email: litbangpemas@unisla.ac.id</p>
                 </address>
             </div>
         </div>
 
         <!-- Copyright -->
         <div class="border-t border-gray-800 mt-8 pt-6 text-center text-sm text-gray-500">
-            &copy; {{ date('Y') }} LPPM Universitas Islam Lamongan. All rights reserved.
+            &copy; {{ date('Y') }} litbangpemas. All rights reserved.
         </div>
     </div>
 </footer>

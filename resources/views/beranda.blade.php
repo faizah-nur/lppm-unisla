@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Beranda - LPPM UNISLA')
+@section('title', 'Beranda - litbangpemas')
 
 @section('content')
     <!-- 1. HERO SLIDER (Dinamis via Livewire) -->
