@@ -23,9 +23,9 @@
 
                 <!-- Dropdown Profil -->
                 <div class="relative group">
-                    <button
+                    <a href="{{ route('profil') }}" wire:navigate
                         class="relative flex items-center px-3 py-2 text-white/90 hover:text-amber-400 font-medium transition-colors duration-200 focus:outline-none">
-                        Profil
+                        Profil Litbang
                         <svg class="ml-1 w-4 h-4 group-hover:rotate-180 transition-transform duration-300"
                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
@@ -33,14 +33,11 @@
                         </svg>
                         <span
                             class="absolute left-3 right-3 -bottom-0.5 h-0.5 bg-amber-400 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-                    </button>
+                    </a>
 
                     <!-- Menu Dropdown Profil -->
                     <div
                         class="absolute left-0 mt-2 w-48 bg-white/95 backdrop-blur-md rounded-xl shadow-xl shadow-emerald-900/20 py-2 opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 z-50 border border-white/40">
-                        <a href="{{ route('profil') }}"
-                            class="block px-4 py-2 text-sm font-semibold text-emerald-800 hover:bg-emerald-50/60 rounded-lg mx-2 transition-colors border-b border-gray-100 mb-1">Tentang
-                            litbangpemas</a>
                         <a href="{{ route('profil') }}#visi-misi"
                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-emerald-50/60 hover:text-emerald-700 rounded-lg mx-2 transition-colors">Visi
                             & Misi</a>
@@ -49,6 +46,10 @@
                         <a href="{{ route('profil') }}#struktur"
                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-emerald-50/60 hover:text-emerald-700 rounded-lg mx-2 transition-colors">Struktur
                             Organisasi</a>
+                        <!-- TAMBAHAN MENU MOA KERJASAMA -->
+                        <a href="{{ route('kerjasama.directory') }}"
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-emerald-50/60 hover:text-emerald-700 rounded-lg mx-2 transition-colors">MoA
+                            Kerjasama</a>
                     </div>
                 </div>
 

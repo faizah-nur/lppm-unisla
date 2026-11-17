@@ -5,6 +5,7 @@ use App\Livewire\InformasiPage;
 use App\Livewire\LayananPage;
 use App\Livewire\ProfilPage;
 use App\Livewire\ResearcherList;
+use App\Livewire\PartnershipDirectory;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -18,3 +19,4 @@ Route::get('/peneliti', ResearcherList::class)->name('peneliti.index');
 Route::redirect('/informasi', '/#informasi')->name('informasi');
 Route::get('/informasi/{id}', InformasiDetail::class)->name('informasi.detail');
 Route::get('/layanan', LayananPage::class)->name('layanan');
+Route::get('/kerjasama/direktori', PartnershipDirectory::class)->name('kerjasama.directory');
