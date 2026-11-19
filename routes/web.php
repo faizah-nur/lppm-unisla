@@ -5,6 +5,7 @@ use App\Livewire\EventRegister;
 use App\Livewire\InformasiDetail;
 use App\Livewire\LayananPage;
 use App\Livewire\PartnershipDirectory;
+use App\Livewire\JournalDirectory;
 use App\Livewire\ProfilPage;
 use App\Livewire\ResearcherList;
 use Illuminate\Support\Facades\Route;
@@ -39,3 +40,6 @@ Route::get('/penelitian/internasional', GrantDashboard::class)->name('penelitian
 Route::get('/pengabdian/internal', GrantDashboard::class)->name('pengabdian.internal')->defaults('kategoriKegiatan', 'Pengabdian')->defaults('kategoriSumber', 'internal');
 Route::get('/pengabdian/eksternal', GrantDashboard::class)->name('pengabdian.eksternal')->defaults('kategoriKegiatan', 'Pengabdian')->defaults('kategoriSumber', 'eksternal_dn');
 Route::get('/pengabdian/internasional', GrantDashboard::class)->name('pengabdian.internasional')->defaults('kategoriKegiatan', 'Pengabdian')->defaults('kategoriSumber', 'internasional');
+
+// Publikasi
+Route::get('/publikasi/jurnal', JournalDirectory::class)->name('publikasi.jurnal');

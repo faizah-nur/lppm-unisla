@@ -114,12 +114,31 @@
                     </div>
                 </div>
 
-                <a href="#"
-                    class="relative px-3 py-2 text-white/90 hover:text-amber-400 font-medium transition-colors duration-200 group">
-                    Publikasi
-                    <span
-                        class="absolute left-3 right-3 -bottom-0.5 h-0.5 bg-amber-400 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-                </a>
+                <!-- Dropdown Publikasi -->
+                <div class="relative group">
+                    <a href="#"
+                        class="relative flex items-center px-3 py-2 text-white/90 hover:text-amber-400 font-medium transition-colors duration-200 focus:outline-none">
+                        Publikasi
+                        <svg class="ml-1 w-4 h-4 group-hover:rotate-180 transition-transform duration-300"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                        <span
+                            class="absolute left-3 right-3 -bottom-0.5 h-0.5 bg-amber-400 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                    </a>
+                    <!-- Menu Dropdown Publikasi -->
+                    <div
+                        class="absolute left-0 mt-2 w-56 bg-white/95 backdrop-blur-md rounded-xl shadow-xl shadow-emerald-900/20 py-2 opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 z-50 border border-white/40">
+                        <a href="{{ route('publikasi.jurnal') }}" wire:navigate
+                            class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-emerald-50/60 hover:text-emerald-700 rounded-lg mx-2 transition-colors">Direktori
+                            Jurnal</a>
+                        <a href="#"
+                            class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-emerald-50/60 hover:text-emerald-700 rounded-lg mx-2 transition-colors">HKI</a>
+                        <a href="#"
+                            class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-emerald-50/60 hover:text-emerald-700 rounded-lg mx-2 transition-colors">Buku</a>
+                    </div>
+                </div>
 
                 <!-- Dropdown Layanan -->
                 <div class="relative group">

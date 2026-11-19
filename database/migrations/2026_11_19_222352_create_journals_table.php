@@ -6,20 +6,19 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('journals', function (Blueprint $table) {
             $table->id();
+            $table->string('title'); // Nama Jurnal (cth: IJASC)
+            $table->text('description'); // Deskripsi singkat
+            $table->string('cover_image'); // Path gambar cover
+            $table->string('external_url'); // Link menuju website jurnal (Kunjungi Jurnal)
+            $table->boolean('is_active')->default(true); // Status tampil atau tidak
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('journals');
