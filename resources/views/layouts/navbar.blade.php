@@ -60,19 +60,59 @@
                         class="absolute left-3 right-3 -bottom-0.5 h-0.5 bg-amber-400 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
                 </a>
 
-                <a href="#"
-                    class="relative px-3 py-2 text-white/90 hover:text-amber-400 font-medium transition-colors duration-200 group">
-                    Penelitian
-                    <span
-                        class="absolute left-3 right-3 -bottom-0.5 h-0.5 bg-amber-400 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-                </a>
+                <!-- Dropdown Penelitian -->
+                <div class="relative group">
+                    <a href="#"
+                        class="relative flex items-center px-3 py-2 text-white/90 hover:text-amber-400 font-medium transition-colors duration-200 focus:outline-none">
+                        Penelitian
+                        <svg class="ml-1 w-4 h-4 group-hover:rotate-180 transition-transform duration-300"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                        <span
+                            class="absolute left-3 right-3 -bottom-0.5 h-0.5 bg-amber-400 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                    </a>
+                    <!-- Menu Dropdown Penelitian -->
+                    <div
+                        class="absolute left-0 mt-2 w-56 bg-white/95 backdrop-blur-md rounded-xl shadow-xl shadow-emerald-900/20 py-2 opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 z-50 border border-white/40">
+                        <a href="{{ route('penelitian.internal') }}" wire:navigate
+                            class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-emerald-50/60 hover:text-emerald-700 rounded-lg mx-2 transition-colors">Hibah
+                            Internal</a>
+                        <a href="{{ route('penelitian.eksternal') }}" wire:navigate
+                            class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-emerald-50/60 hover:text-emerald-700 rounded-lg mx-2 transition-colors">Eksternal
+                            Dalam Negeri</a>
+                        <a href="{{ route('penelitian.internasional') }}" wire:navigate
+                            class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-emerald-50/60 hover:text-emerald-700 rounded-lg mx-2 transition-colors">Internasional</a>
+                    </div>
+                </div>
 
-                <a href="#"
-                    class="relative px-3 py-2 text-white/90 hover:text-amber-400 font-medium transition-colors duration-200 group">
-                    Pengabdian
-                    <span
-                        class="absolute left-3 right-3 -bottom-0.5 h-0.5 bg-amber-400 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-                </a>
+                <!-- Dropdown Pengabdian -->
+                <div class="relative group">
+                    <a href="#"
+                        class="relative flex items-center px-3 py-2 text-white/90 hover:text-amber-400 font-medium transition-colors duration-200 focus:outline-none">
+                        Pengabdian
+                        <svg class="ml-1 w-4 h-4 group-hover:rotate-180 transition-transform duration-300"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                        <span
+                            class="absolute left-3 right-3 -bottom-0.5 h-0.5 bg-amber-400 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                    </a>
+                    <!-- Menu Dropdown Pengabdian -->
+                    <div
+                        class="absolute left-0 mt-2 w-56 bg-white/95 backdrop-blur-md rounded-xl shadow-xl shadow-emerald-900/20 py-2 opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 z-50 border border-white/40">
+                        <a href="{{ route('pengabdian.internal') }}" wire:navigate
+                            class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-emerald-50/60 hover:text-emerald-700 rounded-lg mx-2 transition-colors">Hibah
+                            Internal</a>
+                        <a href="{{ route('pengabdian.eksternal') }}" wire:navigate
+                            class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-emerald-50/60 hover:text-emerald-700 rounded-lg mx-2 transition-colors">Eksternal
+                            Dalam Negeri</a>
+                        <a href="{{ route('pengabdian.internasional') }}" wire:navigate
+                            class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-emerald-50/60 hover:text-emerald-700 rounded-lg mx-2 transition-colors">Internasional</a>
+                    </div>
+                </div>
 
                 <a href="#"
                     class="relative px-3 py-2 text-white/90 hover:text-amber-400 font-medium transition-colors duration-200 group">

@@ -8,6 +8,7 @@
 
     <!-- Panggil Vite (Tailwind & JS) -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body class="bg-gray-50 font-sans antialiased text-gray-800 flex flex-col min-h-screen">
