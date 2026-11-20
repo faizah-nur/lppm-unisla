@@ -1,13 +1,77 @@
-<div class="py-12 bg-gray-50 min-h-screen">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+@php
+    $sumberLabels = [
+        'internal' => 'Hibah Internal',
+        'eksternal_dn' => 'Eksternal Dalam Negeri',
+        'internasional' => 'Internasional',
+        'mandiri' => 'Mandiri',
+    ];
+    $sumberLabel = $sumberLabels[$kategoriSumber] ?? ucwords(str_replace('_', ' ', $kategoriSumber));
+    $pageTitle = $kategoriKegiatan . ' ' . $sumberLabel . ' - litbangpemas';
+@endphp
 
-        <!-- Header -->
-        <div class="mb-8">
-            <h1 class="text-3xl font-extrabold text-gray-900 capitalize">
-                {{ str_replace('_', ' ', $kategoriSumber) }} - {{ $kategoriKegiatan }}
-            </h1>
-            <p class="text-gray-500 mt-2">Data dan rekapitulasi usulan hibah.</p>
+@section('title', $pageTitle)
+
+<div class="bg-gray-50 min-h-screen">
+    <!-- 1. HERO SECTION -->
+    <div
+        class="relative bg-gradient-to-br from-emerald-950 via-emerald-900 to-emerald-800 pt-32 pb-20 text-center text-white border-b border-emerald-800/50 overflow-hidden">
+        <!-- Ornamen Dekoratif Latar Belakang -->
+        <div class="absolute inset-0 opacity-20 pointer-events-none"
+            style="background-image: radial-gradient(circle at 20% 30%, rgba(250,204,21,.35), transparent 40%), radial-gradient(circle at 80% 70%, rgba(16,185,129,.35), transparent 45%);">
         </div>
+        <div
+            class="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,.04)_1px,transparent_1px)] bg-[size:48px_48px] pointer-events-none">
+        </div>
+
+        <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Breadcrumb Navigasi -->
+            <nav class="inline-flex items-center gap-2 text-xs sm:text-sm text-emerald-200/70 mb-5"
+                aria-label="Breadcrumb">
+                <a href="/" wire:navigate class="hover:text-yellow-300 transition-colors">Beranda</a>
+                <svg class="w-3.5 h-3.5 text-emerald-300/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+                <span class="text-emerald-100">{{ $kategoriKegiatan }}</span>
+                <svg class="w-3.5 h-3.5 text-emerald-300/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+                <span class="text-yellow-300 font-medium">{{ $sumberLabel }}</span>
+            </nav>
+
+            <!-- Ikon Hero -->
+            <div
+                class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center mx-auto mb-5 border border-white/15 backdrop-blur-sm shadow-inner">
+                @if ($kategoriKegiatan === 'Pengabdian')
+                    <svg class="w-8 h-8 text-yellow-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z">
+                        </path>
+                    </svg>
+                @else
+                    <svg class="w-8 h-8 text-yellow-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z">
+                        </path>
+                    </svg>
+                @endif
+            </div>
+
+            <!-- Judul Utama -->
+            <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4 capitalize">
+                {{ $kategoriKegiatan }} <span
+                    class="bg-gradient-to-r from-yellow-300 to-emerald-300 bg-clip-text text-transparent">{{ $sumberLabel }}</span>
+            </h1>
+
+            <!-- Deskripsi -->
+            <p class="text-emerald-100/80 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+                Data, visualisasi tren pengajuan, rekapitulasi status, dan daftar usulan pendanaan
+                {{ strtolower($kategoriKegiatan) }} litbangpemas UNISLA.
+            </p>
+        </div>
+    </div>
+
+    <!-- KONTEN UTAMA -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
 
         <!-- 1. BAGIAN GRAFIK -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">

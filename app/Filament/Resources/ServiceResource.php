@@ -21,7 +21,7 @@ class ServiceResource extends Resource
 
     protected static ?string $modelLabel = 'Layanan / Dokumen';
 
-    public static function form(Form $form): Form
+        public static function form(Form $form): Form
     {
         return $form
             ->schema([
@@ -33,16 +33,25 @@ class ServiceResource extends Resource
                             ->maxLength(255)
                             ->columnSpanFull(),
 
-                        Forms\Components\Select::make('category')
+                        // Kategori bisa diketik bebas (Creatable)
+                        Forms\Components\TextInput::make('category')
                             ->label('Kategori')
-                            ->options([
-                                'Panduan' => 'Panduan',
-                                'RENSTRA' => 'RENSTRA',
-                                'Surat Izin Orang Tua' => 'Surat Izin Orang Tua',
-                                'Layanan Lainnya' => 'Layanan Lainnya',
-                            ])
                             ->required()
-                            ->searchable(),
+                            ->datalist([
+                                'Panduan',
+                                'RENSTRA',
+                                'Surat Izin Orang Tua',
+                                'Layanan Lainnya',
+                            ])
+                            ->helperText('Ketik kategori baru atau pilih dari daftar.'),
+
+                        // Input Tahun (Hanya muncul saat Create)
+                        Forms\Components\TextInput::make('year')
+                            ->label('Tahun Publikasi')
+                            ->required()
+                            ->numeric()
+                            ->default(date('Y'))
+                            ->visible(fn (string $operation): bool => $operation === 'create'), // Hanya di Create
 
                         Forms\Components\TextInput::make('order')
                             ->label('Urutan Tampil')
@@ -68,17 +77,15 @@ class ServiceResource extends Resource
                                 'application/msword',
                                 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
                             ])
-                            ->maxSize(10240) // Maksimal 10MB
-                            ->live() // Memicu reaktivitas Livewire
-                            // Logika: Disable jika external_url diisi
+                            ->maxSize(10240)
+                            ->live()
                             ->disabled(fn (Get $get): bool => filled($get('external_url'))),
 
                         Forms\Components\TextInput::make('external_url')
                             ->label('Atau Link GDrive / URL Eksternal')
                             ->url()
                             ->placeholder('https://drive.google.com/...')
-                            ->live(onBlur: true) // Memicu reaktivitas Livewire saat pindah kolom
-                            // Logika: Disable jika file_path diisi
+                            ->live(onBlur: true)
                             ->disabled(fn (Get $get): bool => filled($get('file_path'))),
                     ])->columns(2),
             ]);

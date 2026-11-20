@@ -8,8 +8,7 @@
             <!-- Logo Section -->
             <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
                 <img class="h-12 w-auto transition-transform duration-300 group-hover:scale-105"
-                    src="{{ asset('img/logounisla.png') }}" alt="Logo litbangpemas">
-                <span class="font-extrabold text-xl text-emerald-400 leading-tight tracking-tight">litbangpemas</span>
+                    src="{{ asset('img/logo litbang pemas.png') }}" alt="Logo litbangpemas">
             </a>
 
             <!-- Desktop Menu -->
@@ -55,7 +54,7 @@
 
                 <a href="{{ route('peneliti.index') }}"
                     class="relative px-3 py-2 text-white/90 hover:text-amber-400 font-medium transition-colors duration-200 group">
-                    Peneliti
+                    Profil Dosen
                     <span
                         class="absolute left-3 right-3 -bottom-0.5 h-0.5 bg-amber-400 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
                 </a>
@@ -133,38 +132,20 @@
                         <a href="{{ route('publikasi.jurnal') }}" wire:navigate
                             class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-emerald-50/60 hover:text-emerald-700 rounded-lg mx-2 transition-colors">Direktori
                             Jurnal</a>
-                        <a href="#"
+                        <a href="{{ route('publikasi.hki') }}" wire:navigate
                             class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-emerald-50/60 hover:text-emerald-700 rounded-lg mx-2 transition-colors">HKI</a>
-                        <a href="#"
+                        <a href="{{ route('publikasi.buku') }}" wire:navigate
                             class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-emerald-50/60 hover:text-emerald-700 rounded-lg mx-2 transition-colors">Buku</a>
                     </div>
                 </div>
 
-                <!-- Dropdown Layanan -->
-                <div class="relative group">
-                    <button
-                        class="relative flex items-center px-3 py-2 text-white/90 hover:text-amber-400 font-medium transition-colors duration-200 focus:outline-none">
-                        Layanan & Download
-                        <svg class="ml-1 w-4 h-4 group-hover:rotate-180 transition-transform duration-300"
-                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
-                            </path>
-                        </svg>
-                        <span
-                            class="absolute left-3 right-3 -bottom-0.5 h-0.5 bg-amber-400 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-                    </button>
-                    <div
-                        class="absolute right-0 mt-2 w-52 bg-white/95 backdrop-blur-md rounded-xl shadow-xl shadow-emerald-900/20 py-2 opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 z-50 border border-white/40">
-                        <a href="{{ route('layanan') }}"
-                            class="block px-4 py-2 text-sm font-semibold text-emerald-800 hover:bg-emerald-50/60 rounded-lg mx-2 transition-colors border-b border-gray-100 mb-1">Semua
-                            Layanan</a>
-                        <a href="{{ route('layanan') }}#panduan"
-                            class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-emerald-50/60 hover:text-emerald-700 rounded-lg mx-2 transition-colors">Panduan
-                            Penelitian</a>
-                        <a href="{{ route('layanan') }}#renstra"
-                            class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-emerald-50/60 hover:text-emerald-700 rounded-lg mx-2 transition-colors">RENSTRA</a>
-                    </div>
-                </div>
+                <!-- Tautan Layanan & Download (Langsung tanpa dropdown) -->
+                <a href="{{ route('layanan') }}" wire:navigate
+                    class="relative px-3 py-2 text-white/90 hover:text-amber-400 font-medium transition-colors duration-200 group">
+                    Layanan & Download
+                    <span
+                        class="absolute left-3 right-3 -bottom-0.5 h-0.5 bg-amber-400 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                </a>
             </div>
 
             <!-- Tombol Login Admin (Icon Only) -->

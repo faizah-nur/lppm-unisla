@@ -12,9 +12,10 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description')->nullable();
-            $table->string('category'); // Contoh: Panduan, RENSTRA, Surat Izin
-            $table->string('file_path')->nullable(); // Untuk file yang diupload
-            $table->string('external_url')->nullable(); // Untuk link GDrive
+            $table->string('category');
+            $table->integer('year'); // <-- TAMBAHAN BARU
+            $table->string('file_path')->nullable();
+            $table->string('external_url')->nullable();
             $table->integer('order')->default(0);
             $table->timestamps();
         });

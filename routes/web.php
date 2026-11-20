@@ -8,6 +8,9 @@ use App\Livewire\PartnershipDirectory;
 use App\Livewire\JournalDirectory;
 use App\Livewire\ProfilPage;
 use App\Livewire\ResearcherList;
+use App\Livewire\HkiDirectory;
+use App\Livewire\HkiDetail;
+use App\Livewire\BookDirectory;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\GrantDashboard;
 
@@ -43,3 +46,9 @@ Route::get('/pengabdian/internasional', GrantDashboard::class)->name('pengabdian
 
 // Publikasi
 Route::get('/publikasi/jurnal', JournalDirectory::class)->name('publikasi.jurnal');
+// Halaman Daftar HKI
+Route::get('/publikasi/hki', HkiDirectory::class)->name('publikasi.hki');
+// Halaman Detail HKI
+Route::get('/publikasi/hki/{id}', HkiDetail::class)->name('publikasi.hki.detail');
+// Buku
+Route::get('/publikasi/buku', BookDirectory::class)->name('publikasi.buku');

@@ -9,10 +9,11 @@ class Service extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
+        protected $fillable = [
         'title',
         'description',
         'category',
+        'year',
         'file_path',
         'external_url',
         'order',
