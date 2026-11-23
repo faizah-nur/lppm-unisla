@@ -41,6 +41,7 @@ class EventResource extends Resource
                         Forms\Components\FileUpload::make('poster_path')
                             ->label('Gambar / Brosur Event')
                             ->image()
+                            ->disk('public')
                             ->directory('event-posters')
                             ->imageResizeMode('cover')
                             ->imageCropAspectRatio('16:9')
@@ -55,15 +56,30 @@ class EventResource extends Resource
                     ->schema([
                         Forms\Components\DateTimePicker::make('registration_start')
                             ->label('Mulai Pendaftaran')
+                            ->native(false)
+                            ->displayFormat('d/m/Y H:i')
+                            ->seconds(false)
+                            ->closeOnDateSelection(false)
+                            ->validationAttribute('Mulai Pendaftaran')
                             ->required(),
 
                         Forms\Components\DateTimePicker::make('registration_end')
                             ->label('Selesai Pendaftaran')
+                            ->native(false)
+                            ->displayFormat('d/m/Y H:i')
+                            ->seconds(false)
+                            ->closeOnDateSelection(false)
+                            ->validationAttribute('Selesai Pendaftaran')
                             ->required()
                             ->after('registration_start'),
 
                         Forms\Components\DateTimePicker::make('event_date')
                             ->label('Tanggal Pelaksanaan Event')
+                            ->native(false)
+                            ->displayFormat('d/m/Y H:i')
+                            ->seconds(false)
+                            ->closeOnDateSelection(false)
+                            ->validationAttribute('Tanggal Pelaksanaan Event')
                             ->required()
                             ->after('registration_end'),
                     ])->columns(3),
@@ -74,19 +90,24 @@ class EventResource extends Resource
                         Forms\Components\FileUpload::make('certificate_template_path')
                             ->label('Template Sertifikat')
                             ->image()
+                            ->disk('public')
                             ->directory('certificate-templates')
                             ->helperText('Disarankan menggunakan gambar landscape resolusi tinggi.'),
 
                         Forms\Components\TextInput::make('cert_x_position')
                             ->label('Posisi X Teks (Pixel)')
                             ->numeric()
+                            ->minValue(0)
                             ->default(500)
+                            ->required()
                             ->helperText('Jarak dari kiri gambar.'),
 
                         Forms\Components\TextInput::make('cert_y_position')
                             ->label('Posisi Y Teks (Pixel)')
                             ->numeric()
+                            ->minValue(0)
                             ->default(400)
+                            ->required()
                             ->helperText('Jarak dari atas gambar.'),
                     ])->columns(3),
             ]);
@@ -98,6 +119,7 @@ class EventResource extends Resource
             ->columns([
                 Tables\Columns\ImageColumn::make('poster_path')
                     ->label('Brosur')
+                    ->disk('public')
                     ->square(),
                 Tables\Columns\TextColumn::make('title')
                     ->label('Judul Event')

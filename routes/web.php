@@ -11,6 +11,8 @@ use App\Livewire\ResearcherList;
 use App\Livewire\HkiDirectory;
 use App\Livewire\HkiDetail;
 use App\Livewire\BookDirectory;
+use App\Livewire\ProductDirectory;
+use App\Livewire\ProductDetail;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\GrantDashboard;
 
@@ -52,3 +54,15 @@ Route::get('/publikasi/hki', HkiDirectory::class)->name('publikasi.hki');
 Route::get('/publikasi/hki/{id}', HkiDetail::class)->name('publikasi.hki.detail');
 // Buku
 Route::get('/publikasi/buku', BookDirectory::class)->name('publikasi.buku');
+
+Route::get('/produk-jasa', ProductDirectory::class)->name('produk.directory');
+Route::get('/produk-jasa/{id}', ProductDetail::class)->name('produk.detail');
+
+// Route fallback untuk menyajikan file /storage/ jika symlink Windows tidak aktif
+Route::get('/storage/{path}', function ($path) {
+    $filePath = storage_path('app/public/' . $path);
+    if (!file_exists($filePath)) {
+        abort(404);
+    }
+    return response()->file($filePath);
+})->where('path', '.*')->name('storage.local');

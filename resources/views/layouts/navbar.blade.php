@@ -139,6 +139,16 @@
                     </div>
                 </div>
 
+                <!-- Dropdown Inovasi -->
+                <div class="relative group">
+                    <a href="{{ route('produk.directory') }}" wire:navigate
+                        class="relative flex items-center px-3 py-2 text-white/90 hover:text-amber-400 font-medium transition-colors duration-200 focus:outline-none">
+                        Produk & Jasa
+                        <span
+                            class="absolute left-3 right-3 -bottom-0.5 h-0.5 bg-amber-400 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                    </a>
+                </div>
+
                 <!-- Tautan Layanan & Download (Langsung tanpa dropdown) -->
                 <a href="{{ route('layanan') }}" wire:navigate
                     class="relative px-3 py-2 text-white/90 hover:text-amber-400 font-medium transition-colors duration-200 group">
