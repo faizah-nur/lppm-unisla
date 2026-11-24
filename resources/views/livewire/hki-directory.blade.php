@@ -13,19 +13,6 @@
         </div>
 
         <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- Breadcrumb Navigasi -->
-            <nav class="inline-flex items-center gap-2 text-xs sm:text-sm text-emerald-200/70 mb-5"
-                aria-label="Breadcrumb">
-                <a href="/" wire:navigate class="hover:text-yellow-300 transition-colors">Beranda</a>
-                <svg class="w-3.5 h-3.5 text-emerald-300/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-                <span class="text-emerald-200/90">Publikasi</span>
-                <svg class="w-3.5 h-3.5 text-emerald-300/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-                <span class="text-yellow-300 font-medium">Karya Tercatat HKI</span>
-            </nav>
 
             <!-- Ikon Hero -->
             <div
@@ -38,12 +25,15 @@
 
             <!-- Judul Utama -->
             <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
-                Karya Tercatat <span class="bg-gradient-to-r from-yellow-300 to-emerald-300 bg-clip-text text-transparent">Hak Kekayaan Intelektual</span>
+                Karya Tercatat <span
+                    class="bg-gradient-to-r from-yellow-300 to-emerald-300 bg-clip-text text-transparent">Hak Kekayaan
+                    Intelektual</span>
             </h1>
 
             <!-- Deskripsi -->
             <p class="text-emerald-100/80 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-                Daftar paten, hak cipta, dan kekayaan intelektual sivitas akademika Universitas Islam Lamongan yang telah terdaftar resmi.
+                Daftar paten, hak cipta, dan kekayaan intelektual sivitas akademika Universitas Islam Lamongan yang
+                telah terdaftar resmi.
             </p>
         </div>
     </div>
@@ -76,12 +66,14 @@
 
             <!-- Info Kategori -->
             <div class="flex gap-2">
-                <div class="flex items-center gap-2 bg-yellow-50/60 border border-yellow-200/80 px-3 py-1.5 rounded-lg text-sm">
+                <div
+                    class="flex items-center gap-2 bg-yellow-50/60 border border-yellow-200/80 px-3 py-1.5 rounded-lg text-sm">
                     <span class="font-bold text-gray-700">Hak Cipta</span>
                     <span
                         class="bg-yellow-200/70 text-yellow-800 px-2 py-0.5 rounded text-xs font-bold">{{ $totalHakCipta }}</span>
                 </div>
-                <div class="flex items-center gap-2 bg-emerald-50/60 border border-emerald-200/80 px-3 py-1.5 rounded-lg text-sm">
+                <div
+                    class="flex items-center gap-2 bg-emerald-50/60 border border-emerald-200/80 px-3 py-1.5 rounded-lg text-sm">
                     <span class="font-bold text-gray-700">Paten</span>
                     <span
                         class="bg-emerald-200/70 text-emerald-800 px-2 py-0.5 rounded text-xs font-bold">{{ $totalPaten }}</span>
@@ -140,7 +132,8 @@
                         </div>
 
                         <!-- Judul -->
-                        <h3 class="text-lg font-bold text-gray-900 mb-4 line-clamp-2 leading-snug group-hover:text-emerald-800 transition-colors">
+                        <h3
+                            class="text-lg font-bold text-gray-900 mb-4 line-clamp-2 leading-snug group-hover:text-emerald-800 transition-colors">
                             {{ $hki->judul }}
                         </h3>
 

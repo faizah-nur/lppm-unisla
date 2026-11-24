@@ -13,15 +13,6 @@
         </div>
 
         <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- Breadcrumb Navigasi -->
-            <nav class="inline-flex items-center gap-2 text-xs sm:text-sm text-emerald-200/70 mb-5"
-                aria-label="Breadcrumb">
-                <a href="/" wire:navigate class="hover:text-yellow-300 transition-colors">Beranda</a>
-                <svg class="w-3.5 h-3.5 text-emerald-300/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-                <span class="text-yellow-300 font-medium">Layanan & Download</span>
-            </nav>
 
             <!-- Ikon Hero -->
             <div
@@ -34,12 +25,15 @@
 
             <!-- Judul Utama -->
             <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
-                Layanan & <span class="bg-gradient-to-r from-yellow-300 to-emerald-300 bg-clip-text text-transparent">Pusat Unduhan</span>
+                Layanan & <span
+                    class="bg-gradient-to-r from-yellow-300 to-emerald-300 bg-clip-text text-transparent">Pusat
+                    Unduhan</span>
             </h1>
 
             <!-- Deskripsi -->
             <p class="text-emerald-100/80 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-                Temukan dan unduh panduan, template proposal, formulir, dan dokumen penting lainnya untuk keperluan penelitian dan pengabdian masyarakat.
+                Temukan dan unduh panduan, template proposal, formulir, dan dokumen penting lainnya untuk keperluan
+                penelitian dan pengabdian masyarakat.
             </p>
         </div>
     </div>
@@ -50,7 +44,6 @@
         <!-- Bar Pencarian & Judul Konten -->
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
             <div class="flex items-center gap-2.5">
-                <span class="w-1.5 h-6 bg-gradient-to-b from-yellow-400 to-emerald-600 rounded-full"></span>
                 <h2 class="text-xl md:text-2xl font-bold text-emerald-950">Daftar Dokumen & Panduan</h2>
             </div>
 

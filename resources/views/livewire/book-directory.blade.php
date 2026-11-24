@@ -13,19 +13,6 @@
         </div>
 
         <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- Breadcrumb Navigasi -->
-            <nav class="inline-flex items-center gap-2 text-xs sm:text-sm text-emerald-200/70 mb-5"
-                aria-label="Breadcrumb">
-                <a href="/" wire:navigate class="hover:text-yellow-300 transition-colors">Beranda</a>
-                <svg class="w-3.5 h-3.5 text-emerald-300/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-                <span class="text-emerald-200/90">Publikasi</span>
-                <svg class="w-3.5 h-3.5 text-emerald-300/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-                <span class="text-yellow-300 font-medium">Direktori Buku</span>
-            </nav>
 
             <!-- Ikon Hero -->
             <div
@@ -39,12 +26,15 @@
 
             <!-- Judul Utama -->
             <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
-                Direktori <span class="bg-gradient-to-r from-yellow-300 to-emerald-300 bg-clip-text text-transparent">Karya Buku</span>
+                Direktori <span
+                    class="bg-gradient-to-r from-yellow-300 to-emerald-300 bg-clip-text text-transparent">Karya
+                    Buku</span>
             </h1>
 
             <!-- Deskripsi -->
             <p class="text-emerald-100/80 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-                Koleksi buku referensi, monograf, dan buku ajar yang ditulis dan diterbitkan oleh sivitas akademika Universitas Islam Lamongan.
+                Koleksi buku referensi, monograf, dan buku ajar yang ditulis dan diterbitkan oleh sivitas akademika
+                Universitas Islam Lamongan.
             </p>
         </div>
     </div>

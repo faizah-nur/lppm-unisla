@@ -1,4 +1,4 @@
-<div class="py-12 bg-gray-50 min-h-screen flex items-center justify-center">
+<div class="pt-28 pb-12 bg-gray-50 min-h-screen flex items-center justify-center">
     <div class="max-w-3xl w-full mx-auto px-4 sm:px-6 lg:px-8">
 
         <div class="mb-8 text-center">

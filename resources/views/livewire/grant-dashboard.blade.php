@@ -24,19 +24,6 @@
         </div>
 
         <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- Breadcrumb Navigasi -->
-            <nav class="inline-flex items-center gap-2 text-xs sm:text-sm text-emerald-200/70 mb-5"
-                aria-label="Breadcrumb">
-                <a href="/" wire:navigate class="hover:text-yellow-300 transition-colors">Beranda</a>
-                <svg class="w-3.5 h-3.5 text-emerald-300/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-                <span class="text-emerald-100">{{ $kategoriKegiatan }}</span>
-                <svg class="w-3.5 h-3.5 text-emerald-300/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-                <span class="text-yellow-300 font-medium">{{ $sumberLabel }}</span>
-            </nav>
 
             <!-- Ikon Hero -->
             <div

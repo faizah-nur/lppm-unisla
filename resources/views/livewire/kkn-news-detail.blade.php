@@ -1,25 +1,43 @@
-<div class="py-12 bg-gray-50 min-h-screen">
+@section('title', $news->title . ' - Warta & Informasi KKN')
+
+<div class="pt-28 pb-12 bg-gray-50 min-h-screen">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <!-- Breadcrumb -->
-        <nav class="flex text-sm text-gray-500 mb-6" aria-label="Breadcrumb">
-            <ol class="inline-flex items-center space-x-1 md:space-x-3">
-                <li class="inline-flex items-center">
-                    <a href="{{ route('kkn.informasi') }}" wire:navigate
-                        class="hover:text-emerald-600 transition-colors">Informasi KKN</a>
-                </li>
-                <li>
-                    <div class="flex items-center">
-                        <svg class="w-4 h-4 text-gray-400 mx-1" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd"
-                                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                        <span class="text-gray-700 font-medium truncate max-w-[200px]">{{ $news->title }}</span>
-                    </div>
-                </li>
-            </ol>
-        </nav>
+        <!-- Breadcrumb & Back Link -->
+        <div class="flex items-center justify-between mb-6">
+            <nav class="flex text-sm text-gray-500" aria-label="Breadcrumb">
+                <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                    <li class="inline-flex items-center">
+                        <a href="{{ route('kkn.informasi') }}" wire:navigate
+                            class="hover:text-emerald-600 transition-colors inline-flex items-center gap-1.5 font-medium">
+                            <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path>
+                            </svg>
+                            Informasi KKN
+                        </a>
+                    </li>
+                    <li>
+                        <div class="flex items-center">
+                            <svg class="w-4 h-4 text-gray-400 mx-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="text-gray-700 font-medium truncate max-w-[200px] md:max-w-xs">{{ $news->title }}</span>
+                        </div>
+                    </li>
+                </ol>
+            </nav>
+
+            <a href="{{ route('kkn.informasi') }}" wire:navigate
+                class="hidden sm:inline-flex items-center gap-1 text-sm font-semibold text-emerald-700 hover:text-emerald-800 transition-colors">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                </svg>
+                Kembali
+            </a>
+        </div>
 
         <div
             class="grid grid-cols-1 lg:grid-cols-2 gap-10 bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-gray-200">
@@ -71,7 +89,7 @@
 
                     <!-- Spinner Loading -->
                     <div wire:loading wire:target="setActiveMedia"
-                        class="absolute inset-0 bg-white/70 backdrop-blur-sm z-10 flex flex-col items-center justify-center">
+                        class="absolute inset-0 bg-white/70 backdrop-blur-sm z-10 flex flex-col items-center justify-center rounded-2xl">
                         <svg class="animate-spin h-10 w-10 text-emerald-600 mb-2" xmlns="http://www.w3.org/2000/svg"
                             fill="none" viewBox="0 0 24 24">
                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
@@ -89,7 +107,6 @@
                     <div class="grid grid-cols-4 gap-3">
                         @foreach ($mediaList as $media)
                             @php
-                                // Cek apakah media ini yang sedang aktif
                                 $isActive = $activeMedia && $activeMedia['url'] === $media['url'];
                             @endphp
 
@@ -122,8 +139,8 @@
             <!-- Kolom Kanan: Informasi Berita -->
             <div class="flex flex-col">
                 <span
-                    class="inline-block bg-emerald-50 text-emerald-700 text-xs font-bold px-3 py-1 rounded-lg border border-emerald-100 uppercase tracking-wider w-max mb-4">
-                    Berita KKN
+                    class="inline-block bg-emerald-50 text-emerald-800 text-xs font-bold px-3 py-1 rounded-lg border border-emerald-100 uppercase tracking-wider w-max mb-4">
+                    Warta KKN
                 </span>
 
                 <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4 leading-tight">{{ $news->title }}
@@ -145,14 +162,14 @@
                 </div>
 
                 <!-- Tombol Kembali -->
-                <div class="mt-auto pt-6 border-t border-gray-100">
+                <div class="mt-auto pt-6 border-t border-gray-100 flex items-center justify-between">
                     <a href="{{ route('kkn.informasi') }}" wire:navigate
-                        class="inline-flex items-center gap-2 text-sm font-semibold text-gray-500 hover:text-emerald-700 transition-colors">
+                        class="inline-flex items-center gap-2 text-sm font-semibold text-emerald-700 hover:text-emerald-800 transition-colors">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                         </svg>
-                        Kembali ke Daftar Informasi
+                        Kembali ke Daftar Informasi KKN
                     </a>
                 </div>
             </div>

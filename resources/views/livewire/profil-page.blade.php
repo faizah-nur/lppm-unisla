@@ -189,37 +189,75 @@
                 <p class="text-gray-500">Pengurus litbangpemas periode 2024-2028</p>
             </div>
 
-            @if ($members->count())
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    @foreach ($members as $member)
-                        <div
-                            class="reveal group bg-white rounded-3xl overflow-hidden border border-emerald-100/80 shadow-sm hover:shadow-xl hover:shadow-emerald-900/5 hover:-translate-y-1 transition-all duration-300">
-                            <div class="relative aspect-square bg-emerald-50 overflow-hidden">
-                                <img src="{{ $member->image ? Storage::url($member->image) : 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600&auto=format&fit=crop' }}"
-                                    alt="{{ $member->name }}" loading="lazy"
-                                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                                <div
-                                    class="absolute inset-0 bg-gradient-to-t from-emerald-950/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                </div>
+            @if ($topLeader)
+                <div class="flex flex-col items-center justify-center w-full overflow-hidden pb-10">
+
+                    <!-- LEVEL 1: KETUA (Paling Atas) -->
+                    <div class="relative flex flex-col items-center">
+                        <div class="org-card shadow-md">
+                            <div class="org-avatar">
+                                <img src="{{ $topLeader->image ? Storage::url($topLeader->image) : 'https://ui-avatars.com/api/?name=' . urlencode($topLeader->name) . '&background=0D8ABC&color=fff' }}"
+                                    alt="{{ $topLeader->name }}">
                             </div>
-                            <div class="p-5 text-center">
-                                <h3 class="font-bold text-emerald-950 leading-tight mb-1">{{ $member->name }}</h3>
-                                <p class="text-[11px] font-semibold text-emerald-600 tracking-wider uppercase">
-                                    {{ $member->position }}</p>
+                            <div class="org-info">
+                                <h3 class="text-sm font-bold text-white">{{ $topLeader->name }}</h3>
+                                <p class="text-[11px] text-amber-300 font-semibold uppercase">
+                                    {{ $topLeader->position }}</p>
                             </div>
                         </div>
-                    @endforeach
+
+                        <!-- Garis Vertikal Turun dari Ketua -->
+                        @if ($otherMembers->count() > 0)
+                            <div class="w-0.5 h-10 bg-emerald-500"></div>
+                        @endif
+                    </div>
+
+                    <!-- LEVEL 2 & SETERUSNYA -->
+                    @if ($otherMembers->count() > 0)
+                        <div class="relative w-full flex justify-center mt-2">
+
+                            <!-- Garis Horizontal Utama (Hanya tampil di layar laptop/desktop) -->
+                            <div class="hidden md:block absolute top-0 left-1/2 -translate-x-1/2 h-0.5 bg-emerald-500"
+                                style="width: calc(100% - {{ 100 / ($otherMembers->count() + 1) }}%); max-width: 90%;">
+                            </div>
+
+                            <!-- Container Anggota (Menggunakan Grid: 2 kolom di HP, 4 kolom di Desktop) -->
+                            <div
+                                class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 pt-0 md:pt-10 px-2 md:px-4 relative z-10 w-full max-w-5xl mx-auto">
+                                @foreach ($otherMembers as $member)
+                                    <div class="relative flex flex-col items-center">
+
+                                        <!-- Garis Vertikal Naik ke Garis Horizontal (Hanya di Desktop) -->
+                                        <div class="hidden md:block absolute -top-10 w-0.5 h-10 bg-emerald-500"></div>
+
+                                        <!-- Kartu Anggota -->
+                                        <div
+                                            class="org-card shadow-sm hover:shadow-md transition-shadow mobile-compact w-full">
+                                            <div class="org-avatar">
+                                                <img src="{{ $member->image ? Storage::url($member->image) : 'https://ui-avatars.com/api/?name=' . urlencode($member->name) . '&background=0D8ABC&color=fff' }}"
+                                                    alt="{{ $member->name }}">
+                                            </div>
+                                            <div class="org-info">
+                                                <h3 class="mobile-text font-bold text-white leading-tight">
+                                                    {{ $member->name }}</h3>
+                                                <p
+                                                    class="mobile-text text-[10px] md:text-[11px] text-amber-300 font-semibold uppercase mt-1">
+                                                    {{ $member->position }}</p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                @endforeach
+                            </div>
+
+                        </div>
+                    @endif
+
                 </div>
             @else
+                <!-- Empty State -->
                 <div class="reveal text-center py-16 bg-white rounded-3xl border border-dashed border-emerald-200">
-                    <div class="w-14 h-14 mx-auto mb-4 rounded-2xl bg-emerald-50 flex items-center justify-center">
-                        <svg class="w-7 h-7 text-emerald-400" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
-                        </svg>
-                    </div>
-                    <p class="text-gray-500">Belum ada data anggota struktur organisasi.</p>
+                    <p class="text-gray-500">Belum ada data struktur organisasi.</p>
                 </div>
             @endif
         </section>
@@ -285,6 +323,77 @@
             .animate-blob,
             .animate-pulse-slow {
                 animation: none;
+            }
+        }
+
+        /* =========================================
+           CSS ORGANIZATION CARD
+           ========================================= */
+        .org-card {
+            background-color: #064e3b;
+            /* emerald-900 */
+            border-radius: 12px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 240px;
+            /* Lebar normal di desktop */
+            border: 2px solid #10b981;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        .org-avatar {
+            width: 64px;
+            /* DIPERBESAR DARI 50px */
+            height: 64px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+            border: 2px solid #fcd34d;
+        }
+
+        .org-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .org-info {
+            text-align: left;
+            line-height: 1.2;
+            overflow: hidden;
+            /* Mencegah teks meluber */
+        }
+
+        /* =========================================
+           KHUSUS UNTUK TAMPILAN MOBILE (Di bawah 768px)
+           ========================================= */
+        @media (max-width: 768px) {
+            .mobile-compact {
+                width: 100% !important;
+                /* Memenuhi lebar kolom grid */
+                padding: 8px 10px !important;
+                gap: 8px !important;
+                border-radius: 8px !important;
+            }
+
+            .mobile-compact .org-avatar {
+                width: 40px !important;
+                /* Avatar lebih kecil di HP */
+                height: 40px !important;
+                border-width: 1px !important;
+            }
+
+            .mobile-text {
+                font-size: 11px !important;
+                /* Teks lebih kecil di HP */
+            }
+
+            /* Menyembunyikan garis vertikal dari card di HP agar tidak berantakan */
+            .mobile-compact::before {
+                display: none;
             }
         }
     </style>

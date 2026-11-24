@@ -13,19 +13,6 @@
         </div>
 
         <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- Breadcrumb Navigasi -->
-            <nav class="inline-flex items-center gap-2 text-xs sm:text-sm text-emerald-200/70 mb-5"
-                aria-label="Breadcrumb">
-                <a href="/" wire:navigate class="hover:text-yellow-300 transition-colors">Beranda</a>
-                <svg class="w-3.5 h-3.5 text-emerald-300/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-                <span class="text-emerald-200/90">Publikasi</span>
-                <svg class="w-3.5 h-3.5 text-emerald-300/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-                <span class="text-yellow-300 font-medium">Direktori Jurnal</span>
-            </nav>
 
             <!-- Ikon Hero -->
             <div
@@ -39,12 +26,15 @@
 
             <!-- Judul Utama -->
             <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
-                Direktori <span class="bg-gradient-to-r from-yellow-300 to-emerald-300 bg-clip-text text-transparent">Jurnal Ilmiah</span>
+                Direktori <span
+                    class="bg-gradient-to-r from-yellow-300 to-emerald-300 bg-clip-text text-transparent">Jurnal
+                    Ilmiah</span>
             </h1>
 
             <!-- Deskripsi -->
             <p class="text-emerald-100/80 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-                Kumpulan jurnal ilmiah berkala yang diterbitkan dan dikelola oleh litbangpemas Universitas Islam Lamongan.
+                Kumpulan jurnal ilmiah berkala yang diterbitkan dan dikelola oleh litbangpemas Universitas Islam
+                Lamongan.
             </p>
         </div>
     </div>
@@ -67,7 +57,8 @@
                         <!-- Body Content -->
                         <div class="p-5 flex-grow flex flex-col">
                             <!-- Judul -->
-                            <h3 class="text-lg font-bold text-gray-900 mb-2 line-clamp-2 leading-tight group-hover:text-emerald-800 transition-colors">
+                            <h3
+                                class="text-lg font-bold text-gray-900 mb-2 line-clamp-2 leading-tight group-hover:text-emerald-800 transition-colors">
                                 {{ $journal->title }}
                             </h3>
 
