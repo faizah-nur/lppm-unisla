@@ -1,20 +1,24 @@
 <?php
 
+use App\Livewire\BookDirectory;
 use App\Livewire\EventList;
 use App\Livewire\EventRegister;
+use App\Livewire\GrantDashboard;
+use App\Livewire\HkiDetail;
+use App\Livewire\HkiDirectory;
 use App\Livewire\InformasiDetail;
+use App\Livewire\JournalDirectory;
+use App\Livewire\KknFlow;
+use App\Livewire\KknNewsDetail;
+use App\Livewire\KknNewsDirectory;
+use App\Livewire\KknSchemes;
 use App\Livewire\LayananPage;
 use App\Livewire\PartnershipDirectory;
-use App\Livewire\JournalDirectory;
+use App\Livewire\ProductDetail;
+use App\Livewire\ProductDirectory;
 use App\Livewire\ProfilPage;
 use App\Livewire\ResearcherList;
-use App\Livewire\HkiDirectory;
-use App\Livewire\HkiDetail;
-use App\Livewire\BookDirectory;
-use App\Livewire\ProductDirectory;
-use App\Livewire\ProductDetail;
 use Illuminate\Support\Facades\Route;
-use App\Livewire\GrantDashboard;
 
 Route::get('/', function () {
     return view('beranda');
@@ -35,7 +39,6 @@ Route::get('/event', EventList::class)->name('event.list');
 // Route untuk form pendaftaran event
 Route::get('/event/{eventId}/daftar', EventRegister::class)->name('event.register');
 
-
 // Penelitian
 Route::get('/penelitian/internal', GrantDashboard::class)->name('penelitian.internal')->defaults('kategoriKegiatan', 'Penelitian')->defaults('kategoriSumber', 'internal');
 Route::get('/penelitian/eksternal', GrantDashboard::class)->name('penelitian.eksternal')->defaults('kategoriKegiatan', 'Penelitian')->defaults('kategoriSumber', 'eksternal_dn');
@@ -54,15 +57,21 @@ Route::get('/publikasi/hki', HkiDirectory::class)->name('publikasi.hki');
 Route::get('/publikasi/hki/{id}', HkiDetail::class)->name('publikasi.hki.detail');
 // Buku
 Route::get('/publikasi/buku', BookDirectory::class)->name('publikasi.buku');
-
+// produk
 Route::get('/produk-jasa', ProductDirectory::class)->name('produk.directory');
 Route::get('/produk-jasa/{id}', ProductDetail::class)->name('produk.detail');
+// kkn
+Route::get('/kkn/alur', KknFlow::class)->name('kkn.alur');
+Route::get('/kkn/skema', KknSchemes::class)->name('kkn.skema');
+Route::get('/kkn/informasi', KknNewsDirectory::class)->name('kkn.informasi');
+Route::get('/kkn/informasi/{id}', KknNewsDetail::class)->name('kkn.informasi.detail');
 
 // Route fallback untuk menyajikan file /storage/ jika symlink Windows tidak aktif
 Route::get('/storage/{path}', function ($path) {
-    $filePath = storage_path('app/public/' . $path);
-    if (!file_exists($filePath)) {
+    $filePath = storage_path('app/public/'.$path);
+    if (! file_exists($filePath)) {
         abort(404);
     }
+
     return response()->file($filePath);
 })->where('path', '.*')->name('storage.local');
