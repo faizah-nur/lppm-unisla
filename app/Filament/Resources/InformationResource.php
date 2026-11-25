@@ -16,7 +16,11 @@ class InformationResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-megaphone';
 
-    protected static ?string $navigationLabel = 'Informasi & Kegiatan';
+    protected static ?string $navigationGroup = 'Kegiatan & Agenda';
+
+    protected static ?int $navigationSort = 1;
+
+    protected static ?string $navigationLabel = 'Informasi & Agenda';
 
     protected static ?string $modelLabel = 'Informasi Kegiatan';
 

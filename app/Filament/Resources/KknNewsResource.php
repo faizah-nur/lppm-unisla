@@ -15,6 +15,7 @@ class KknNewsResource extends Resource
     protected static ?string $model = KknNews::class;
     protected static ?string $navigationIcon = 'heroicon-o-newspaper';
     protected static ?string $navigationGroup = 'KKN';
+    protected static ?int $navigationSort = 1;
     protected static ?string $navigationLabel = 'Informasi KKN';
     protected static ?string $modelLabel = 'Berita KKN';
 

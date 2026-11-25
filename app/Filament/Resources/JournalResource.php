@@ -13,10 +13,9 @@ use Filament\Tables\Table;
 class JournalResource extends Resource
 {
     protected static ?string $model = Journal::class;
-    protected static ?string $navigationIcon = 'heroicon-o-book-open';
-    
-    // Mengelompokkan menu dalam grup 'Publikasi'
-    protected static ?string $navigationGroup = 'Publikasi'; 
+    protected static ?string $navigationIcon = 'heroicon-o-newspaper';
+    protected static ?string $navigationGroup = 'Publikasi & KI';
+    protected static ?int $navigationSort = 3;
     protected static ?string $navigationLabel = 'Direktori Jurnal';
     protected static ?string $modelLabel = 'Jurnal';
 

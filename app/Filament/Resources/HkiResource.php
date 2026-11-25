@@ -14,9 +14,11 @@ class HkiResource extends Resource
 {
     protected static ?string $model = Hki::class;
     protected static ?string $navigationIcon = 'heroicon-o-document-check';
-    protected static ?string $navigationGroup = 'Publikasi'; 
+    protected static ?string $navigationGroup = 'Publikasi & KI';
+    protected static ?int $navigationSort = 2;
     protected static ?string $navigationLabel = 'Data HKI';
     protected static ?string $modelLabel = 'HKI';
+    protected static ?string $pluralModelLabel = 'Data HKI';
 
     public static function form(Form $form): Form
     {

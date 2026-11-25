@@ -16,9 +16,10 @@ class ImportResearch extends Page implements HasForms
     use InteractsWithForms;
 
     protected static ?string $navigationIcon = 'heroicon-o-document-arrow-up';
-    protected static ?string $navigationLabel = 'Import Penelitian';
-    protected static ?string $navigationGroup = 'Manajemen Hibah';
-    protected static ?string $title = 'Upload Research';
+    protected static ?string $navigationLabel = 'Import Riset';
+    protected static ?string $navigationGroup = 'Penelitian & Pengabdian';
+    protected static ?int $navigationSort = 3;
+    protected static ?string $title = 'Upload Data Riset (Excel)';
 
     protected static string $view = 'filament.pages.import-research';
 

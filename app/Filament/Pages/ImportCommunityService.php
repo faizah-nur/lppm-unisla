@@ -17,8 +17,9 @@ class ImportCommunityService extends Page implements HasForms
 
     protected static ?string $navigationIcon = 'heroicon-o-document-arrow-up';
     protected static ?string $navigationLabel = 'Import Pengabdian';
-    protected static ?string $navigationGroup = 'Manajemen Hibah';
-    protected static ?string $title = 'Upload Community Services';
+    protected static ?string $navigationGroup = 'Penelitian & Pengabdian';
+    protected static ?int $navigationSort = 4;
+    protected static ?string $title = 'Upload Data Pengabdian (Excel)';
 
     protected static string $view = 'filament.pages.import-community-service';
 

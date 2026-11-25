@@ -15,6 +15,7 @@ class KknSchemeResource extends Resource
     protected static ?string $model = KknScheme::class;
     protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
     protected static ?string $navigationGroup = 'KKN';
+    protected static ?int $navigationSort = 2;
     protected static ?string $navigationLabel = 'Skema KKN';
     protected static ?string $modelLabel = 'Skema';
 

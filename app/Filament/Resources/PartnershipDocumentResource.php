@@ -13,8 +13,15 @@ use Filament\Tables\Table;
 class PartnershipDocumentResource extends Resource
 {
     protected static ?string $model = PartnershipDocument::class;
+
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
+
+    protected static ?string $navigationGroup = 'Profil Lembaga';
+
+    protected static ?int $navigationSort = 4;
+
     protected static ?string $navigationLabel = 'Dokumen Kerjasama';
+
     protected static ?string $modelLabel = 'Dokumen Kerjasama';
 
     public static function form(Form $form): Form

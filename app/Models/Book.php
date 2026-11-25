@@ -9,5 +9,12 @@ class Book extends Model
 {
     use HasFactory;
 
+    protected $table = 'books';
+
     protected $guarded = ['id'];
+
+    protected $casts = [
+        'year' => 'integer',
+        'pages' => 'integer',
+    ];
 }

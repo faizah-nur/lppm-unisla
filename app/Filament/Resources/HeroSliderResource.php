@@ -16,6 +16,10 @@ class HeroSliderResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-photo';
 
+    protected static ?string $navigationGroup = 'Konten Web';
+
+    protected static ?int $navigationSort = 1;
+
     protected static ?string $navigationLabel = 'Hero Slider';
 
     protected static ?string $modelLabel = 'Hero Slider';

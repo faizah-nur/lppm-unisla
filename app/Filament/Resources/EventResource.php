@@ -16,6 +16,10 @@ class EventResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-calendar-days';
 
+    protected static ?string $navigationGroup = 'Kegiatan & Agenda';
+
+    protected static ?int $navigationSort = 2;
+
     protected static ?string $navigationLabel = 'Manajemen Event';
 
     protected static ?string $modelLabel = 'Event';
@@ -84,32 +88,72 @@ class EventResource extends Resource
                             ->after('registration_end'),
                     ])->columns(3),
 
-                Forms\Components\Section::make('Pengaturan Sertifikat')
-                    ->description('Unggah template sertifikat kosong (PNG/JPG). Sistem akan mencetak nama dan NIP di atasnya.')
+                Forms\Components\Section::make('Pengaturan Sertifikat & Live Preview')
+                    ->description('Atur font dan geser teks secara langsung pada gambar di bawah untuk menentukan posisinya.')
                     ->schema([
+                        // 1. Input Upload Gambar
                         Forms\Components\FileUpload::make('certificate_template_path')
-                            ->label('Template Sertifikat')
+                            ->label('Template Sertifikat (PNG/JPG)')
                             ->image()
                             ->disk('public')
                             ->directory('certificate-templates')
-                            ->helperText('Disarankan menggunakan gambar landscape resolusi tinggi.'),
+                            ->helperText('Disarankan menggunakan gambar landscape resolusi tinggi.')
+                            ->live() // Agar preview langsung update saat gambar diunggah
+                            ->columnSpanFull(),
 
-                        Forms\Components\TextInput::make('cert_x_position')
-                            ->label('Posisi X Teks (Pixel)')
-                            ->numeric()
-                            ->minValue(0)
-                            ->default(500)
-                            ->required()
-                            ->helperText('Jarak dari kiri gambar.'),
+                        // 2. Pengaturan Font
+                        Forms\Components\Grid::make(4)
+                            ->schema([
+                                Forms\Components\Select::make('cert_font_family')
+                                    ->label('Jenis Font')
+                                    ->options([
+                                        'Arial' => 'Arial (Sans)',
+                                        'Times New Roman' => 'Times New Roman (Serif)',
+                                        'Courier New' => 'Courier (Monospace)',
+                                        'Verdana' => 'Verdana',
+                                    ])
+                                    ->default('Arial')
+                                    ->live()
+                                    ->required(),
 
-                        Forms\Components\TextInput::make('cert_y_position')
-                            ->label('Posisi Y Teks (Pixel)')
-                            ->numeric()
-                            ->minValue(0)
-                            ->default(400)
-                            ->required()
-                            ->helperText('Jarak dari atas gambar.'),
-                    ])->columns(3),
+                                Forms\Components\TextInput::make('cert_font_size')
+                                    ->label('Ukuran Font (Pixel)')
+                                    ->numeric()
+                                    ->default(40)
+                                    ->live()
+                                    ->required(),
+
+                                Forms\Components\ColorPicker::make('cert_font_color')
+                                    ->label('Warna Teks')
+                                    ->default('#000000')
+                                    ->live()
+                                    ->required(),
+
+                                Forms\Components\Toggle::make('cert_font_bold')
+                                    ->label('Tebalkan (Bold)')
+                                    ->default(false)
+                                    ->live(),
+                            ]),
+
+                        // 3. Live Preview (Memanggil file blade kustom)
+                        Forms\Components\View::make('filament.forms.certificate-preview')
+                            ->viewData(function (Forms\Get $get) {
+                                return [
+                                    'template' => $get('certificate_template_path'),
+                                    'x_pos' => $get('cert_x_position') ?? 500,
+                                    'y_pos' => $get('cert_y_position') ?? 400,
+                                    'font_size' => $get('cert_font_size') ?? 40,
+                                    'font_color' => $get('cert_font_color') ?? '#000000',
+                                    'font_family' => $get('cert_font_family') ?? 'Arial',
+                                    'font_bold' => $get('cert_font_bold') ?? false,
+                                ];
+                            })
+                            ->columnSpanFull(),
+
+                        // 4. Hidden Fields untuk menyimpan koordinat hasil geser
+                        Forms\Components\Hidden::make('cert_x_position'),
+                        Forms\Components\Hidden::make('cert_y_position'),
+                    ]),
             ]);
     }
 

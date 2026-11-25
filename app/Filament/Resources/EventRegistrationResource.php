@@ -22,6 +22,10 @@ class EventRegistrationResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
 
+    protected static ?string $navigationGroup = 'Kegiatan & Agenda';
+
+    protected static ?int $navigationSort = 3;
+
     protected static ?string $navigationLabel = 'Data Pendaftar Event';
 
     protected static ?string $modelLabel = 'Pendaftar';

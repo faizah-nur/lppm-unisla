@@ -80,6 +80,19 @@
                                 </div>
                             @endif
 
+                            <!-- Badge GDrive (Jika tersedia) -->
+                            @if ($book->gdrive_url)
+                                <a href="{{ $book->gdrive_url }}" target="_blank" rel="noopener noreferrer"
+                                    title="Tersedia di Google Drive"
+                                    class="absolute top-3 left-3 bg-white/95 backdrop-blur-sm text-emerald-800 text-[10px] font-bold px-2.5 py-1 rounded-md border border-emerald-100 flex items-center gap-1 shadow-sm hover:bg-emerald-600 hover:text-white transition-colors z-10">
+                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                    </svg>
+                                    <span>GDrive</span>
+                                </a>
+                            @endif
+
                             <!-- Badge Tahun -->
                             <div
                                 class="absolute top-3 right-3 bg-black/70 backdrop-blur-sm text-white text-xs font-bold px-2.5 py-1 rounded-md">
@@ -115,6 +128,23 @@
                                         title="{{ $book->publisher }}">{{ $book->publisher ?? '-' }}</span>
                                 </div>
                             </div>
+
+                            <!-- Tombol Buka GDrive -->
+                            @if ($book->gdrive_url)
+                                <div class="mt-4 pt-3 border-t border-gray-100">
+                                    <a href="{{ $book->gdrive_url }}" target="_blank" rel="noopener noreferrer"
+                                        class="inline-flex items-center justify-center w-full gap-2 px-3 py-2 bg-emerald-50 hover:bg-emerald-600 text-emerald-800 hover:text-white border border-emerald-200 hover:border-emerald-600 rounded-xl text-xs font-semibold transition-all duration-200 shadow-2xs group/btn">
+                                        <svg class="w-3.5 h-3.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                        </svg>
+                                        <span>Buka Google Drive</span>
+                                        <svg class="w-3 h-3 transition-transform group-hover/btn:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                        </svg>
+                                    </a>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 @endforeach

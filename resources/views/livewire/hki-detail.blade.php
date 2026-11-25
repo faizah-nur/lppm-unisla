@@ -1,8 +1,9 @@
 @section('title', $hki->judul . ' - HKI litbangpemas')
 
-<div class="bg-gray-50 min-h-screen pb-24">
+<div x-data="{ showHkiModal: false }" class="bg-gray-50 min-h-screen pb-24">
     <!-- Hero Section -->
-    <div class="relative bg-gradient-to-br from-emerald-950 via-emerald-900 to-emerald-800 pt-28 pb-32 overflow-hidden border-b border-emerald-800/50">
+    <div
+        class="relative bg-gradient-to-br from-emerald-950 via-emerald-900 to-emerald-800 pt-28 pb-32 overflow-hidden border-b border-emerald-800/50">
         <!-- Ornamen dekoratif -->
         <div class="absolute inset-0 opacity-20 pointer-events-none"
             style="background-image: radial-gradient(circle at 20% 30%, rgba(250,204,21,.35), transparent 40%), radial-gradient(circle at 80% 70%, rgba(16,185,129,.35), transparent 45%);">
@@ -155,27 +156,127 @@
 
                 <!-- CTA Ajukan HKI -->
                 <div class="bg-white rounded-3xl shadow-sm border border-gray-200 p-6 text-center">
-                    <div class="w-12 h-12 bg-emerald-100/70 text-emerald-700 rounded-2xl flex items-center justify-center mx-auto mb-3">
+                    <div
+                        class="w-12 h-12 bg-emerald-100/70 text-emerald-700 rounded-2xl flex items-center justify-center mx-auto mb-3">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                         </svg>
                     </div>
                     <h3 class="text-sm font-bold text-gray-900 mb-2">Ingin Mencatatkan Karya?</h3>
-                    <p class="text-xs text-gray-500 mb-6 leading-relaxed">Tim LPPM litbangpemas mendampingi proses pendaftaran
+                    <p class="text-xs text-gray-500 mb-6 leading-relaxed">Tim LPPM litbangpemas mendampingi proses
+                        pendaftaran
                         HKI, dari penyiapan dokumen hingga sertifikat resmi terbit.</p>
-                    <a href="#"
+                    <button type="button" @click="showHkiModal = true"
                         class="inline-flex items-center justify-center w-full gap-2 px-5 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-sm font-bold transition-colors shadow-md shadow-emerald-900/10">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                         </svg>
                         Ajukan HKI
-                    </a>
+                    </button>
                 </div>
             </div>
 
         </div>
 
+    </div>
+
+    <!-- ========================================== -->
+    <!-- MODAL AJUKAN HKI                           -->
+    <!-- ========================================== -->
+    <div x-show="showHkiModal" style="display: none;" class="fixed inset-0 z-[999] overflow-y-auto" role="dialog"
+        aria-modal="true">
+
+        <!-- Backdrop -->
+        <div x-show="showHkiModal" x-transition:enter="transition-opacity ease-out duration-300"
+            x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+            x-transition:leave="transition-opacity ease-in duration-200" x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0" @click="showHkiModal = false"
+            class="fixed inset-0 bg-gray-900/80 backdrop-blur-sm transition-opacity"></div>
+
+        <!-- Panel Modal -->
+        <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
+            <div x-show="showHkiModal" x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 translate-y-4 sm:scale-95"
+                x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                x-transition:leave="transition ease-in duration-200"
+                x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                x-transition:leave-end="opacity-0 translate-y-4 sm:scale-95"
+                class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg border border-gray-100">
+
+                <!-- Header Modal -->
+                <div class="bg-white px-6 py-5 border-b border-gray-100 flex justify-between items-center">
+                    <h3 class="text-lg font-bold text-gray-900">Pilih Jenis HKI</h3>
+                    <button @click="showHkiModal = false" class="text-gray-400 hover:text-gray-600 transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Body Modal -->
+                <div class="px-6 py-6 space-y-4">
+                    <p class="text-sm text-gray-600 mb-4 text-center">Silakan pilih jenis Kekayaan Intelektual yang
+                        ingin Anda ajukan. Anda akan diarahkan ke WhatsApp LPPM.</p>
+
+                    <!-- Opsi Hak Cipta -->
+                    <a href="https://wa.me/6285749271441?text={{ urlencode('Halo Tim LPPM litbangpemas, saya ingin mengajukan pendaftaran *Hak Cipta*. Mohon informasi lebih lanjut mengenai persyaratan dan alurnya. Terima kasih.') }}"
+                        target="_blank"
+                        class="group flex items-center p-4 border border-gray-200 rounded-xl hover:border-emerald-500 hover:bg-emerald-50 transition-all cursor-pointer">
+                        <div
+                            class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 text-blue-600 group-hover:bg-blue-200 transition-colors">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="ml-4 flex-grow">
+                            <h4 class="text-base font-bold text-gray-900 group-hover:text-emerald-700">Hak Cipta</h4>
+                            <p class="text-xs text-gray-500 mt-1">Untuk buku, karya seni, program komputer, dll.</p>
+                        </div>
+                        <svg class="w-5 h-5 text-gray-300 group-hover:text-emerald-500" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                            </path>
+                        </svg>
+                    </a>
+
+                    <!-- Opsi Paten -->
+                    <a href="https://wa.me/6285749271441?text={{ urlencode('Halo Tim LPPM litbangpemas, saya ingin mengajukan pendaftaran *Paten*. Mohon informasi lebih lanjut mengenai persyaratan dan alurnya. Terima kasih.') }}"
+                        target="_blank"
+                        class="group flex items-center p-4 border border-gray-200 rounded-xl hover:border-emerald-500 hover:bg-emerald-50 transition-all cursor-pointer">
+                        <div
+                            class="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0 text-amber-600 group-hover:bg-amber-200 transition-colors">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="ml-4 flex-grow">
+                            <h4 class="text-base font-bold text-gray-900 group-hover:text-emerald-700">Paten</h4>
+                            <p class="text-xs text-gray-500 mt-1">Untuk invensi teknologi, produk, atau proses baru.
+                            </p>
+                        </div>
+                        <svg class="w-5 h-5 text-gray-300 group-hover:text-emerald-500" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                            </path>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Footer Modal -->
+                <div class="bg-gray-50 px-6 py-4 flex justify-end">
+                    <button @click="showHkiModal = false"
+                        class="px-4 py-2 text-sm font-semibold text-gray-600 hover:text-gray-900 transition-colors">
+                        Batal
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

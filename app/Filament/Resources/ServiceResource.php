@@ -17,6 +17,10 @@ class ServiceResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-document-arrow-down';
 
+    protected static ?string $navigationGroup = 'Konten Web';
+
+    protected static ?int $navigationSort = 2;
+
     protected static ?string $navigationLabel = 'Layanan & Download';
 
     protected static ?string $modelLabel = 'Layanan / Dokumen';

@@ -16,6 +16,7 @@ class KknStepResource extends Resource
     protected static ?string $model = KknStep::class;
     protected static ?string $navigationIcon = 'heroicon-o-list-bullet';
     protected static ?string $navigationGroup = 'KKN';
+    protected static ?int $navigationSort = 3;
     protected static ?string $navigationLabel = 'Alur Pendaftaran';
     protected static ?string $modelLabel = 'Langkah KKN';
 

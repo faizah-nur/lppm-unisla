@@ -14,8 +14,11 @@ class ProfileResource extends Resource
 {
     protected static ?string $model = Profile::class;
 
-    // Ubah icon dan label agar lebih rapi di sidebar
     protected static ?string $navigationIcon = 'heroicon-o-building-library';
+
+    protected static ?string $navigationGroup = 'Profil Lembaga';
+
+    protected static ?int $navigationSort = 1;
 
     protected static ?string $navigationLabel = 'Visi, Misi & Sejarah';
 
