@@ -179,16 +179,34 @@
                                             </div>
                                         </div>
 
-                                        <a href="{{ $item->external_url ?? ($item->file_path ? Storage::url($item->file_path) : '#') }}"
-                                            target="_blank"
-                                            class="inline-flex items-center gap-1 text-sm font-bold text-emerald-600 hover:text-emerald-700 transition-colors">
-                                            Buka
-                                            <svg class="w-4 h-4" fill="none" stroke="currentColor"
-                                                viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                                            </svg>
-                                        </a>
+                                        @if ($item->file_path && !$item->external_url)
+                                            <div class="flex items-center gap-2">
+                                                <button type="button"
+                                                    wire:click="$dispatch('open-preview-modal', { id: {{ $item->id }}, type: 'service', url: '{{ Storage::url($item->file_path) }}', title: '{{ addslashes($item->title) }}' })"
+                                                    class="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-emerald-50 hover:bg-emerald-600 text-emerald-700 hover:text-white rounded-xl text-xs sm:text-sm font-semibold border border-emerald-200 hover:border-emerald-600 transition-all duration-200 shadow-2xs cursor-pointer group/btn">
+                                                    <svg class="w-4 h-4 text-emerald-600 group-hover/btn:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                                    </svg>
+                                                    <span>Pratinjau</span>
+                                                </button>
+                                                <a href="{{ Storage::url($item->file_path) }}" download
+                                                    title="Unduh Dokumen"
+                                                    class="inline-flex items-center justify-center p-1.5 bg-white hover:bg-gray-100 text-gray-500 hover:text-emerald-700 rounded-xl border border-gray-200 transition-colors shadow-2xs">
+                                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                                                    </svg>
+                                                </a>
+                                            </div>
+                                        @else
+                                            <a href="{{ $item->external_url ?? '#' }}" target="_blank" rel="noopener noreferrer"
+                                                class="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-blue-50 hover:bg-blue-600 text-blue-700 hover:text-white rounded-xl text-xs sm:text-sm font-semibold border border-blue-200 hover:border-blue-600 transition-all duration-200 shadow-2xs group/btn">
+                                                <span>Buka Tautan</span>
+                                                <svg class="w-3.5 h-3.5 transition-transform group-hover/btn:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                                </svg>
+                                            </a>
+                                        @endif
                                     </div>
                                 </div>
                             @endforeach
