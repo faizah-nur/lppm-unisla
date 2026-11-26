@@ -21,6 +21,7 @@ class ProfilPage extends Component
 
         return view('livewire.profil-page', [
             'profile' => Profile::first(),
+            'members' => $members,
             'topLeader' => $topLeader,
             'otherMembers' => $otherMembers,
         ])->layout('layouts.app');
