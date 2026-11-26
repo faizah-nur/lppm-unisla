@@ -31,4 +31,9 @@ return [
         ],
     ],
 
+    'siakad' => [
+        'url' => env('SIAKAD_BASE_URL', env('SIAKAD_API_URL', 'https://api.unisla.ac.id/open/daftardosen')),
+        'key' => env('SIAKAD_API_KEY'),
+    ],
+
 ];

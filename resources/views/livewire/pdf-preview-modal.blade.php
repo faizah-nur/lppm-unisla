@@ -10,7 +10,7 @@
             class="fixed inset-0 bg-gray-900/80 backdrop-blur-sm transition-opacity cursor-pointer"></div>
 
         <!-- Panel (Padding Top agar tidak tertutup navbar) -->
-        <div class="flex min-h-full items-start justify-center p-4 pt-24 sm:pt-28 text-center">
+        <div class="flex min-h-full items-center justify-center p-4 text-center">
             <div x-show="show" x-transition:enter="ease-out duration-300"
                 x-transition:enter-start="opacity-0 translate-y-4 sm:scale-95"
                 x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
@@ -18,8 +18,8 @@
 
                 <!-- Header Modal -->
                 <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100 bg-white">
-                    <h3 class="text-lg font-bold text-gray-900">Pratinjau Dokumen</h3>
-                    <div class="flex items-center gap-3">
+                    <h3 class="text-lg font-bold text-gray-900 truncate max-w-xl">{{ $title ?? 'Pratinjau Dokumen' }}</h3>
+                    <div class="flex items-center gap-3 shrink-0">
                         <!-- Tombol Download Langsung -->
                         <a href="{{ $downloadUrl }}" download
                             class="inline-flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors">

@@ -16,6 +16,10 @@ class OrganizationMemberResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
 
+    protected static ?string $navigationGroup = 'Profil Lembaga';
+
+    protected static ?int $navigationSort = 2;
+
     protected static ?string $navigationLabel = 'Struktur Organisasi';
 
     protected static ?string $modelLabel = 'Anggota Organisasi';

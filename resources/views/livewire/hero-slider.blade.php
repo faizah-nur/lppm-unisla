@@ -141,7 +141,7 @@
                                         </svg>
                                     </div>
                                     <div class="min-w-0">
-                                        <p class="text-white font-semibold text-sm truncate">LPPM UNISLA</p>
+                                        <p class="text-white font-semibold text-sm truncate">litbangpemas</p>
                                         <p class="text-emerald-200/70 text-xs truncate">
                                             {{ $slider->tagline ?: 'Kampus Inovasi & Riset' }}</p>
                                     </div>

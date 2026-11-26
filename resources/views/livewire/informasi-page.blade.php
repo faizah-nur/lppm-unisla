@@ -12,7 +12,7 @@
             </div>
             <h1 class="text-3xl md:text-4xl font-bold mb-3">Informasi Kegiatan</h1>
             <p class="text-emerald-100/80 text-base md:text-lg max-w-2xl mx-auto">
-                Kumpulan informasi kegiatan, acara, dan dokumentasi LPPM UNISLA.
+                Kumpulan informasi kegiatan, acara, dan dokumentasi litbangpemas.
             </p>
         </div>
     </div>

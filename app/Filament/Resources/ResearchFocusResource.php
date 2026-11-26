@@ -17,6 +17,10 @@ class ResearchFocusResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-light-bulb';
 
+    protected static ?string $navigationGroup = 'Penelitian & Pengabdian';
+
+    protected static ?int $navigationSort = 1;
+
     protected static ?string $navigationLabel = 'Fokus Penelitian';
 
     protected static ?string $modelLabel = 'Fokus Penelitian';

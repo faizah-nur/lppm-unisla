@@ -6,7 +6,6 @@ use App\Filament\Resources\InformationResource\Pages;
 use App\Models\Information;
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Forms\Get; // Penting untuk reaktivitas
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -17,49 +16,58 @@ class InformationResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-megaphone';
 
-    protected static ?string $navigationLabel = 'Informasi & Kegiatan';
+    protected static ?string $navigationGroup = 'Kegiatan & Agenda';
 
-    protected static ?string $modelLabel = 'Informasi';
+    protected static ?int $navigationSort = 1;
+
+    protected static ?string $navigationLabel = 'Informasi & Agenda';
+
+    protected static ?string $modelLabel = 'Informasi Kegiatan';
+
+    protected static ?string $pluralModelLabel = 'Informasi & Kegiatan';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\Section::make('Konten Informasi')
+                Forms\Components\Section::make('Informasi Kegiatan')
+                    ->description('Lengkapi data kegiatan, unggah maksimal 3 foto dokumentasi dan/atau tautan video YouTube.')
                     ->schema([
                         Forms\Components\TextInput::make('title')
-                            ->label('Judul Informasi')
+                            ->label('Judul Kegiatan')
                             ->required()
                             ->maxLength(255)
                             ->columnSpanFull(),
 
                         Forms\Components\DatePicker::make('published_at')
-                            ->label('Tanggal Terbit')
+                            ->label('Tanggal Publikasi')
                             ->required()
+                            ->native(false)
                             ->default(now()),
 
-                        // KOLOM YOUTUBE DILETAKKAN DI PALING ATAS (SETELAH JUDUL)
+                        // Input Tautan YouTube (bisa diisi sekaligus bersama gambar)
                         Forms\Components\TextInput::make('youtube_url')
-                            ->label('URL YouTube (Opsional)')
+                            ->label('URL Video YouTube (Opsional)')
                             ->url()
                             ->placeholder('https://www.youtube.com/watch?v=...')
-                            ->live(onBlur: true) // Memicu reaktivitas Livewire
-                            ->helperText('Jika diisi, Cover Gambar akan dinonaktifkan dan video ini yang akan ditampilkan.'),
+                            ->helperText('Masukkan tautan video YouTube jika ada liputan video.'),
 
-                        // KOLOM GAMBAR AKAN DISABLE JIKA YOUTUBE_URL TERISI
-                        Forms\Components\FileUpload::make('image')
-                            ->label('Cover Gambar (Opsional)')
+                        // Input Gambar Dokumentasi (Maksimal 3 Foto)
+                        Forms\Components\FileUpload::make('images')
+                            ->label('Foto Dokumentasi (Maksimal 3 Gambar)')
                             ->image()
                             ->disk('public')
                             ->directory('informations')
+                            ->multiple()
+                            ->maxFiles(3)
                             ->maxSize(5120)
-                            ->disabled(fn (Get $get): bool => filled($get('youtube_url'))) // Logika Livewire
-                            ->helperText(fn (Get $get): string => filled($get('youtube_url'))
-                                ? 'Gambar dinonaktifkan karena URL YouTube sudah diisi.'
-                                : 'Gunakan gambar jika tidak ada video YouTube.'),
+                            ->reorderable()
+                            ->imageEditor()
+                            ->columnSpanFull()
+                            ->helperText('Unggah 1 sampai 3 foto dokumentasi kegiatan (JPG/PNG/WebP, maks. 5MB per file). Gambar pertama akan menjadi cover utama.'),
 
                         Forms\Components\RichEditor::make('content')
-                            ->label('Isi / Detail Informasi')
+                            ->label('Isi / Uraian Kegiatan')
                             ->required()
                             ->columnSpanFull(),
                     ])->columns(2),
@@ -72,22 +80,31 @@ class InformationResource extends Resource
             ->columns([
                 Tables\Columns\ImageColumn::make('image')
                     ->label('Cover')
-                    ->defaultImageUrl(url('/images/placeholder.png')) // Fallback jika kosong
+                    ->getStateUsing(fn ($record) => $record->first_image)
                     ->circular(),
+
                 Tables\Columns\TextColumn::make('title')
-                    ->label('Judul')
+                    ->label('Judul Kegiatan')
                     ->searchable()
-                    ->limit(50),
+                    ->limit(45),
+
+                Tables\Columns\TextColumn::make('images_count')
+                    ->label('Foto')
+                    ->getStateUsing(fn ($record) => count($record->all_images))
+                    ->badge()
+                    ->color('success'),
+
                 Tables\Columns\IconColumn::make('youtube_url')
                     ->label('Video YT')
                     ->boolean()
                     ->getStateUsing(fn ($record) => filled($record->youtube_url)),
+
                 Tables\Columns\TextColumn::make('published_at')
                     ->label('Tanggal Terbit')
                     ->date('d M Y')
                     ->sortable(),
             ])
-            ->defaultSort('published_at', 'desc') // Urutkan dari yang terbaru
+            ->defaultSort('published_at', 'desc')
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),

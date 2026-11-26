@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LPPM UNISLA - Lembaga Penelitian dan Pengabdian kepada Masyarakat</title>
+    <title>litbangpemas - Lembaga Penelitian, Pengembangan, dan Pengabdian kepada Masyarakat</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
@@ -19,11 +19,8 @@
                 <div class="flex-shrink-0 flex items-center gap-3">
                     <!-- Ganti src ini nanti dengan logo asli UNISLA -->
                     <img class="h-12 w-auto" src="https://unisla.ac.id/wp-content/uploads/2023/05/logo-unisla.png"
-                        alt="Logo UNISLA">
-                    <div class="flex flex-col">
-                        <span class="font-bold text-xl text-green-800 leading-tight">LPPM</span>
-                        <span class="font-semibold text-sm text-gray-600 tracking-wider">UNISLA</span>
-                    </div>
+                        alt="Logo litbangpemas">
+                    <span class="font-bold text-xl text-green-800 leading-tight">litbangpemas</span>
                 </div>
 
                 <!-- Desktop Menu -->
@@ -127,7 +124,7 @@
                 class="absolute top-0 left-0 w-full h-full opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
             </div>
 
-            <h1 class="text-3xl md:text-4xl font-bold mb-4 relative z-10">Selamat Datang di LPPM UNISLA</h1>
+            <h1 class="text-3xl md:text-4xl font-bold mb-4 relative z-10">Selamat Datang di litbangpemas</h1>
             <p class="text-green-100 max-w-2xl mx-auto relative z-10">Pusat unggulan penelitian dan pengabdian kepada
                 masyarakat Universitas Islam Lamongan. Membangun negeri melalui inovasi dan pengabdian.</p>
         </div>

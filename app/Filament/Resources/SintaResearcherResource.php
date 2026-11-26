@@ -15,7 +15,17 @@ class SintaResearcherResource extends Resource
 {
     protected static ?string $model = SintaResearcher::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
+
+    protected static ?string $navigationGroup = 'Penelitian & Pengabdian';
+
+    protected static ?int $navigationSort = 2;
+
+    protected static ?string $navigationLabel = 'Peneliti SINTA';
+
+    protected static ?string $modelLabel = 'Peneliti SINTA';
+
+    protected static ?string $pluralModelLabel = 'Data Peneliti SINTA';
 
     public static function form(Form $form): Form
     {
